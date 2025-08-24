@@ -2,15 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "parking-sruveyFE/package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "dist" }
+      "src": "package.json",
+      "use": "@vercel/static-build"
     }
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "parking-sruveyFE/dist/index.html"
+      "src": "/.*",
+      "dest": "/index.html"
     }
   ]
 }
