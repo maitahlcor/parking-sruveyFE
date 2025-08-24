@@ -1,0 +1,258 @@
+[
+   {
+      "name":"q1",
+      "title":"¿Tiene vehículo privado? (Si no, finalizar encuesta)",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         "Sí",
+         "No"
+      ]
+   },
+   {
+      "name":"q2",
+      "title":"¿Cuántas celdas de auto tiene en su hogar?",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         "Opción 1",
+         "Opción 2",
+         "Opción 3",
+         "Opción 4",
+         "Opción 5"
+      ]
+   },
+   {
+      "name":"q3",
+      "title":"¿Cuántas celdas de moto tiene en su hogar?",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         "Opción 1",
+         "Opción 2",
+         "Opción 3",
+         "Opción 4",
+         "Opción 5"
+      ]
+   },
+   {
+      "name":"q4",
+      "title":"¿Cuántos carros hay en su hogar?",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         "Opción 1",
+         "Opción 2",
+         "Opción 3",
+         "Opción 4",
+         "Opción 5"
+      ]
+   },
+   {
+      "name":"q5",
+      "title":"¿Cuántas motos hay en su hogar?",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         "Opción 1",
+         "Opción 2",
+         "Opción 3",
+         "Opción 4",
+         "Opción 5"
+      ]
+   },
+   {
+      "name":"q6",
+      "title":"¿Utiliza el parqueadero en su lugar de trabajo?",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         "Sí",
+         "No"
+      ]
+   },
+   {
+      "name":"q7",
+      "title":"¿Con qué frecuencia utiliza el parqueadero?",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         "Todos los días",
+         "3-4 veces por semana",
+         "1-2 veces por semana",
+         "Ocasionalmente"
+      ]
+   },
+   {
+      "name":"q8",
+      "title":"¿Qué tan fácil le resulta encontrar un espacio disponible?",
+      "isRequired":true,
+      "type":"rating",
+      "minRateDescription":"Muy difícil",
+      "maxRateDescription":"Muy fácil"
+   },
+   {
+      "name":"q9",
+      "title":"¿Cuánto paga en promedio por el parqueadero al mes?",
+      "isRequired":true,
+      "type":"text",
+      "inputType":"number"
+   },
+   {
+      "name":"q10",
+      "title":"¿Cuál es su nivel de satisfacción con la seguridad del parqueadero?",
+      "isRequired":true,
+      "type":"rating",
+      "minRateDescription":"Muy insatisfecho",
+      "maxRateDescription":"Muy satisfecho"
+   },
+   {
+      "name":"q11",
+      "title":"¿Cuál es su nivel de satisfacción con la limpieza del parqueadero?",
+      "isRequired":true,
+      "type":"rating",
+      "minRateDescription":"Muy insatisfecho",
+      "maxRateDescription":"Muy satisfecho"
+   },
+   {
+      "name":"q12",
+      "title":"¿Cuál es su nivel de satisfacción con la iluminación del parqueadero?",
+      "isRequired":true,
+      "type":"rating",
+      "minRateDescription":"Muy insatisfecho",
+      "maxRateDescription":"Muy satisfecho"
+   },
+   {
+      "name":"q13",
+      "title":"¿Qué mejoras sugeriría para el parqueadero?",
+      "type":"comment"
+   },
+   {
+      "name":"q14",
+      "title":"¿Frecuencia del viaje realizado?",
+      "type":"comment"
+   },
+   {
+      "name":"q15",
+      "title":"¿Ha sido multado alguna vez por mal parqueo?",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         "Sí",
+         "No"
+      ]
+   },
+   {
+      "name":"q16",
+      "title":"¿Le da miedo aparcar de manera prohibida?",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         "Sí",
+         "No"
+      ]
+   },
+   {
+      "name":"q17",
+      "title":"Ordene importancia : Costo, Tiempo de parqueo, Distancia, Tipo de parqueadero",
+      "type": "ranking",
+      "isRequired": true,
+      "choices": [
+         "Costo",
+         "Tiempo de parqueo",
+         "Distancia",
+         "Tipo de parqueadero"
+      ]
+   },
+   {
+      "name":"q18",
+      "type":"radiogroup",
+      "title":"Considerando el siguiente escenario, ¿cuál elegiría?",
+      "choices":[
+         "Opción A: Vía pública gratis, distancia: 300 m, costo: COP 0, espera: 10 min",
+         "Opción B: ZER, distancia: 100 m, tarifa: COP 2000/hr, espera: 5 min",
+         "Opción C: Parqueo en lote, distancia: 500 m, costo: COP 3000, espera: 0 min",
+         "Opción D: Transporte público, distancia: 100 m, costo: COP 2500, espera: 2 min",
+         "Opción E: Taxi/Uber, distancia: 0 m, costo: COP 10000, espera: 0 min"
+      ],
+      "isRequired":true
+   },
+   {
+      "name":"q19",
+      "type":"radiogroup",
+      "title":"Considerando el siguiente escenario, ¿cuál elegiría?",
+      "choices":[
+         "Opción A: tipo: Vía pública gratis, distancia: 400 m, costo: COP 0, espera: 15 min",
+         "Opción B: tipo: ZER, distancia: 800 m, tarifa: COP 2000/hr, espera: 10 min",
+         "Opción C: tipo: Parqueo en lote, distancia: 200 m, costo: COP 0, espera: 15 min",
+         "Opción D: tipo: Transporte público, distancia: 200 m, costo: COP 2500, espera: 4 min",
+         "Opción E: tipo: Taxi/Uber, distancia: 0 m, costo: COP 15000, espera: 1 min"
+      ],
+      "isRequired":true
+   },
+   {
+      "name":"q20",
+      "type":"radiogroup",
+      "title":"Considerando el siguiente escenario, ¿cuál elegiría?",
+      "choices":[
+         "Opción A: Vía pública gratis, distancia: 100 m, costo: COP 0, espera: 5 min",
+         "Opción B: ZER, distancia: 500 m, tarifa: COP 2000/hr, espera: 5 min",
+         "Opción C: Parqueo en lote, distancia: 300 m, costo: COP 10000, espera: 10 min",
+         "Opción D: Transporte público, distancia: 300 m, costo: COP 2500, espera: 1 min",
+         "Opción E: Taxi/Uber, distancia: 0 m, costo: COP 20000, espera: 2 min"
+      ],
+      "isRequired":true
+   },
+   {
+      "name":"q21",
+      "type":"radiogroup",
+      "title":"Considerando el siguiente escenario, ¿cuál elegiría?",
+      "choices":[
+         "Opción A: Vía pública gratis, distancia: 800 m, costo: COP 0, espera: 0 min",
+         "Opción B: ZER, distancia: 300 m, tarifa: COP 2000/hr, espera: 5 min",
+         "Opción C: Parqueo en lote, distancia: 100 m, costo: COP 0, espera: 15 min",
+         "Opción D: Transporte público, distancia: 400 m, costo: COP 2500, espera: 3 min",
+         "Opción E: Taxi/Uber, distancia: 0 m, costo: COP 25000, espera: 3 min"
+      ],
+      "isRequired":true
+   },
+   {
+      "name":"q22",
+      "type":"radiogroup",
+      "title":"Considerando el siguiente escenario, ¿cuál elegiría?",
+      "choices":[
+         "Opción A: Vía pública gratis, distancia: 150 m, costo: COP 0, espera: 20 min",
+         "Opción B: ZER, distancia: 600 m, tarifa: COP 2000/hr, espera: 0 min",
+         "Opción C: Parqueo en lote, distancia: 400 m, costo: COP 5000, espera: 0 min",
+         "Opción D: Transporte público, distancia: 500 m, costo: COP 2500, espera: 5 min",
+         "Opción E: Taxi/Uber, distancia: 0 m, costo: COP 30000, espera: 4 min"
+      ],
+      "isRequired":true
+   },
+   {
+      "name":"q23",
+      "type":"radiogroup",
+      "title":"Considerando el siguiente escenario, ¿cuál elegiría?",
+      "choices":[
+         "Opción A: Vía pública gratis, distancia: 600 m, costo: COP 0, espera: 10 min",
+         "Opción B: ZER, distancia: 150 m, tarifa: COP 2000/hr, espera: 15 min",
+         "Opción C: Parqueo en lote, distancia: 800 m, costo: COP 0, espera: 20 min",
+         "Opción D: Transporte público, distancia: 700 m, costo: COP 2500, espera: 4 min",
+         "Opción E: Taxi/Uber, distancia: 0 m, costo: COP 40000, espera: 0 min"
+      ],
+      "isRequired":true
+   },
+   {
+      "name":"q24",
+      "type":"radiogroup",
+      "title":"Considerando el siguiente escenario, ¿cuál elegiría?",
+      "choices":[
+         "Opción A: Vía pública gratis, distancia: 400 m, costo: COP 0, espera: 15 min",
+         "Opción B: ZER, distancia: 300 m, tarifa: COP 2000/hr, espera: 10 min",
+         "Opción C: Parqueo en lote, distancia: 100 m, costo: COP 3000, espera: 0 min",
+         "Opción D: Transporte público, distancia: 900 m, costo: COP 2500, espera: 3 min",
+         "Opción E: Taxi/Uber, distancia: 0 m, costo: COP 28000, espera: 2 min"
+      ],
+      "isRequired":true
+   }
+]
