@@ -1,6 +1,13 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "parking-sruveyFE/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "dist" }
+    }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "parking-sruveyFE/$1" }
   ]
 }
