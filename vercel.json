@@ -8,6 +8,9 @@
     }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "parking-sruveyFE/$1" }
+    {
+      "src": "/(.*)",
+      "dest": "parking-sruveyFE/dist/index.html"
+    }
   ]
 }
