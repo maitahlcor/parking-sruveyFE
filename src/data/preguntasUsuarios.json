@@ -15,11 +15,11 @@
       "isRequired":true,
       "type":"radiogroup",
       "choices":[
-         "Opción 1",
-         "Opción 2",
-         "Opción 3",
-         "Opción 4",
-         "Opción 5"
+         " 1",
+         " 2",
+         " 3",
+         " 4",
+         " 5"
       ]
    },
    {
@@ -28,11 +28,11 @@
       "isRequired":true,
       "type":"radiogroup",
       "choices":[
-         "Opción 1",
-         "Opción 2",
-         "Opción 3",
-         "Opción 4",
-         "Opción 5"
+         " 1",
+         " 2",
+         " 3",
+         " 4",
+         " 5"
       ]
    },
    {
@@ -40,35 +40,47 @@
       "title":"¿Cuántos carros hay en su hogar?",
       "isRequired":true,
       "type":"radiogroup",
-      "choices":[
-         "Opción 1",
-         "Opción 2",
-         "Opción 3",
-         "Opción 4",
-         "Opción 5"
-      ]
+      "choices":["Moto", "Auto", "Bicicleta", "Camion"]
    },
    {
       "name":"q5",
-      "title":"¿Cuántas motos hay en su hogar?",
+      "title":"donde parquea su vehiculo en su hogar",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":["Parqueo propio  en mi hogar/unidad","via con prohibido parquear","via donde es permitido parquear","Parqueadero privado pago"]
+   },
+    {
+      "name":"q6.1",
+      "title":"¿Sexp?",
       "isRequired":true,
       "type":"radiogroup",
       "choices":[
-         "Opción 1",
-         "Opción 2",
-         "Opción 3",
-         "Opción 4",
-         "Opción 5"
+         "Masculino",
+         "Femenino",
+         "Otro"
       ]
    },
    {
       "name":"q6",
-      "title":"¿Utiliza el parqueadero en su lugar de trabajo?",
+      "title":"¿Tiene alguna discapacidad?",
       "isRequired":true,
       "type":"radiogroup",
       "choices":[
          "Sí",
          "No"
+      ]
+   },
+   {
+      "name":"stratov",
+      "title":"¿Estrato Socio?",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         " 1",
+         " 2",
+         " 3",
+         " 4",
+         " 5"
       ]
    },
    {
