@@ -1,0 +1,146 @@
+[
+   {
+      "name":"ql1",
+      "title":"¿Nombre del establecimiento?",
+      "isRequired":true,
+      "type":"comment"
+   },
+   {
+      "name":"ql2",
+      "title":"Tipo de comercio",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         "Tienda",
+         "Restaurante",
+         "Oficina",
+         "Supermercado",
+         "Farmacia",
+         "Servicio Profesional",
+         "Otro"
+      ]
+   },
+   {
+      "name":"ql3",
+      "title":"Superficie aproximada del establecimiento (m²)",
+      "isRequired":true,
+      "type":"text",
+      "inputType":"number"
+   },
+   {
+      "name":"ql4",
+      "title":"Hora de inicio de funcionamiento (HH:MM)",
+      "isRequired":true,
+      "type":"text"
+   },
+   {
+      "name":"ql5",
+      "title":"Hora de cierre de funcionamiento (HH:MM)",
+      "isRequired":true,
+      "type":"text"
+   },
+   {
+      "name":"ql6",
+      "title":"¿Funciona fines de semana?",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         "Si",
+         "No"
+      ]
+   },
+   {
+      "name":"ql7",
+      "title":"¿Número de empleados?",
+      "isRequired":true,
+      "type":"text",
+      "imputType":"text"
+   },
+   {
+      "name":"ql8",
+      "title":"¿Dispone el establecimiento de parqueo propio?",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         "Si",
+         "No"
+      ]
+   },
+   {
+      "name":"ql9",
+      "title":"Capacidad total de plazas de parqueo",
+      "isRequired":true,
+      "type":"text",
+      "inputType":"number"
+   },
+   {
+      "name":"ql10",
+      "title":"Tipo de parqueo ofrecido",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         "Privado",
+         "Publico",
+         "Mixto"
+      ]
+   },
+   {
+      "name":"ql11",
+      "title":"¿Tarifa por hora de parqueo ofrecido (COP/hora)?",
+      "isRequired":true,
+      "type":"text",
+      "inputType":"number"
+   },
+   {
+      "name":"ql12",
+      "title":"Restricciones de horario del parqueo",
+      "isRequired":true,
+      "type":"text"
+   },
+   {
+      "name":"ql13",
+      "title":"Número promedio de vehículos que buscan parquear por día",
+      "type":"text",
+      "inputType":"number"
+   },
+   {
+      "name":"ql14",
+      "title":"Porcentaje de usuarios que usan el parqueo del establecimiento (%)",
+      "type":"text",
+      "inputType":"number"
+   },
+   {
+      "name":"ql15",
+      "title":"Tiempo promedio de ocupación de una plaza (min)",
+      "type":"text",
+      "inputType":"number"
+   },
+   {
+      "name":"ql16",
+      "title":"Nivel de saturación del parqueo (1-5)",
+      "type":"text",
+      "inputType":"number"
+   },
+   {
+      "name":"ql17",
+      "title":"Frecuencia de rotación de vehículos (veces/hora)",
+      "type":"text",
+      "inputType":"number"
+   },
+   {
+      "name":"ql18",
+      "title":"¿El establecimiento ofrece parqueo gratuito a empleados?",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         "Si",
+         "No"
+      ]
+   },
+   {
+      "name":"ql19",
+      "title":"Número de plazas reservadas para empleados",
+      "type":"text",
+      "inputType":"number"
+   }
+]
