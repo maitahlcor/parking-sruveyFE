@@ -10,63 +10,40 @@ export default function Survey({ questions }) {
       [name]: value,
     });
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Respuestas:", answers);
-    alert("¡Encuesta enviada!");
-  };
-  /*const handleSubmit = async (e) => {
+ const handleSubmit = (e) => {
   e.preventDefault();
-
-  try {
-    const response = await fetch("http://localhost:4000/api/surveys", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(answers),
-    });
-
-    if (response.ok) {
-      alert("¡Encuesta enviada y guardada!");
-      setAnswers({});
-    } else {
-      alert("Error al guardar la encuesta");
-    }
-  } catch (error) {
-    console.error("Error al guardar:", error);
-    alert("Hubo un problema al conectar con el servidor");
+  if (onSubmit) {
+    onSubmit(answers); // le pasa las respuestas al padre
   }
-};*/
-
+};
 
   return (
-    <form onSubmit={handleSubmit} className="survey-form">
+    <form questions={preguntasUsuarios} onSubmit={handleSurveySubmit}>
       {questions.map((q) => (
-  <div key={q.name} className="question">
-    <label className="question-title">{q.title}{q.isRequired && " *"}</label>
-
-    {q.type === "radiogroup" && (
-        <div
-            className={`radiogroup ${
-            q.layout === "horizontal" ? "horizontal" : "vertical"
-            }`}
-        >
-            {q.choices.map((choice, idx) => (
-            <label key={idx}>
-                <input
-                type="radio"
-                name={q.name}
-                value={choice}
-                required={q.isRequired}
-                onChange={(e) => handleChange(q.name, e.target.value)}
-                />
-                {choice}
-            </label>
-            ))}
-        </div>
-        )}
-    
+      <div key={q.name} className="question">
+        <label className="question-title">{q.title}{q.isRequired && " *"}</label>
+            
+        {q.type === "radiogroup" && (
+            <div
+                className={`radiogroup ${
+                q.layout === "horizontal" ? "horizontal" : "vertical"
+                }`}
+            >
+                {q.choices.map((choice, idx) => (
+                <label key={idx}>
+                    <input
+                    type="radio"
+                    name={q.name}
+                    value={choice}
+                    required={q.isRequired}
+                    onChange={(e) => handleChange(q.name, e.target.value)}
+                    />
+                    {choice}
+                </label>
+                ))}
+            </div>
+            )}
+        
      {q.type === "ranking" &&
         q.choices.map((choice, idx) => (
             <div key={idx} className="ranking-item">
@@ -105,64 +82,64 @@ export default function Survey({ questions }) {
     ))}
 
 
-    {q.type === "checkbox" && (
-      <div className="checkboxgroup">
-        {q.choices.map((choice, idx) => (
-          <label key={idx}>
-            <input
-              type="checkbox"
-              name={q.name}
-              value={choice}
-              onChange={(e) => {
-                const current = answers[q.name] || [];
-                if (e.target.checked) {
-                  handleChange(q.name, [...current, choice]);
-                } else {
-                  handleChange(
-                    q.name,
-                    current.filter((c) => c !== choice)
-                  );
-                }
-              }}
-            />
-            {choice}
-          </label>
-        ))}
-      </div>
-    )}
+      {q.type === "checkbox" && (
+        <div className="checkboxgroup">
+          {q.choices.map((choice, idx) => (
+            <label key={idx}>
+              <input
+                type="checkbox"
+                name={q.name}
+                value={choice}
+                onChange={(e) => {
+                  const current = answers[q.name] || [];
+                  if (e.target.checked) {
+                    handleChange(q.name, [...current, choice]);
+                  } else {
+                    handleChange(
+                      q.name,
+                      current.filter((c) => c !== choice)
+                    );
+                  }
+                }}
+              />
+              {choice}
+            </label>
+          ))}
+        </div>
+      )}
 
-    {q.type === "text" && (
-      <input
-        type={q.inputType || "text"}
-        name={q.name}
-        required={q.isRequired}
-        onChange={(e) => handleChange(q.name, e.target.value)}
-      />
-    )}
-
-    {q.type === "comment" && (
-      <textarea
-        name={q.name}
-        rows="4"
-        onChange={(e) => handleChange(q.name, e.target.value)}
-      />
-    )}
-
-    {q.type === "rating" && (
-      <div className="rating">
-        <span>{q.minRateDescription}</span>
+      {q.type === "text" && (
         <input
-          type="range"
+          type={q.inputType || "text"}
           name={q.name}
-          min="1"
-          max="5"
+          required={q.isRequired}
           onChange={(e) => handleChange(q.name, e.target.value)}
         />
-        <span>{q.maxRateDescription}</span>
-      </div>
-    )}
-  </div>
-))}
+      )}
+
+      {q.type === "comment" && (
+        <textarea
+          name={q.name}
+          rows="4"
+          onChange={(e) => handleChange(q.name, e.target.value)}
+        />
+      )}
+
+      {q.type === "rating" && (
+        <div className="rating">
+          <span>{q.minRateDescription}</span>
+          <input
+            type="range"
+            name={q.name}
+            min="1"
+            max="5"
+            onChange={(e) => handleChange(q.name, e.target.value)}
+          />
+          <span>{q.maxRateDescription}</span>
+        </div>
+      )}
+    </div>
+  ))}
 
 
       <button type="submit" className="submit-btn">

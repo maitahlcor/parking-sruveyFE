@@ -1,15 +1,5 @@
 [
    {
-      "name":"q1",
-      "title":"¿Tiene vehículo privado? (Si no, finalizar encuesta)",
-      "isRequired":true,
-      "type":"radiogroup",
-      "choices":[
-         "Sí",
-         "No"
-      ]
-   },
-   {
       "name":"q2",
       "title":"¿Cuántas celdas de auto tiene en su hogar?",
       "isRequired":true,
