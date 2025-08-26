@@ -1,19 +1,36 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function Layout({ children }) {
-  const { pathname } = useLocation();
+  const { user, logout } = useAuth();
+  const nav = useNavigate();
+
+  function onLogout() {
+    logout();
+    nav("/login");
+  }
+
   return (
-    <div className="app">
-      <header className="app-header">
-        <h1>Encuestas de Parqueo</h1>
-        <nav>
-          <Link to="/" className={pathname === "/" ? "active" : ""}>Inicio</Link>
-          <Link to="/usuarios" className={pathname === "/usuarios" ? "active" : ""}>Usuarios</Link>
-          <Link to="/locales" className={pathname === "/locales" ? "active" : ""}>Locales</Link>
+    <>
+      <header className="topbar">
+        <Link to="/" className="brand">Encuestas de Parqueo</Link>
+        <nav className="menu">
+          <NavLink to="/">Inicio</NavLink>
+          <NavLink to="/usuarios">Usuarios</NavLink>
+          <NavLink to="/locales">Locales</NavLink>
+          {!user ? (
+            <NavLink to="/login">Login</NavLink>
+          ) : (
+            <>
+              <span className="muted">{user.email}</span>
+              <button className="btn-link" onClick={onLogout}>Salir</button>
+            </>
+          )}
         </nav>
       </header>
-      <main className="app-main">{children}</main>
-      <footer className="app-footer">© {new Date().getFullYear()} Proyecto Parqueo</footer>
-    </div>
+
+      <main className="main">{children}</main>
+      <footer className="footer">© 2025 Proyecto Parqueo</footer>
+    </>
   );
 }

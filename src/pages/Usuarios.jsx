@@ -1,96 +1,133 @@
 import { useState } from "react";
 import Survey from "../components/Survey";
 import preguntasUsuarios from "../data/preguntasUsuarios.json";
+import { crearEncuesta, guardarRespuestas, finalizarEncuesta } from "../api/encuestas";
 
 export default function Usuarios() {
-  const [isTest, setIsTest] = useState(null); 
-  const [hasVehicle, setHasVehicle] = useState(null); 
+  const [esPrueba, setEsPrueba] = useState(null);
+  const [tieneVehiculo, setTieneVehiculo] = useState(null);
+  const encuestadorId = 1; // TODO: ajustar al ID real (login/selector)
 
-  const handleSurveySubmit = (answers) => {
-    const dataToSave = {
-      isTest,
-      hasVehicle,
-      answers: hasVehicle === "Sí" ? answers : {}, 
-    };
+  // Enviar cuando NO tiene vehículo
+  const handleEnviarSinVehiculo = async () => {
+    try {
+      const encuesta = await crearEncuesta({
+        esPrueba,
+        tipo: "USUARIO",
+        encuestadorId,
+        usuarioEmail: null, // opcional
+      });
 
-    console.log("Guardando en DB:", dataToSave);
-    alert("Encuesta enviada correctamente ✅");
+      // Guarda también las dos preguntas fijas como metadatos en respuestas (si quieres)
+      const meta = {
+        qEsPrueba: esPrueba,
+        qTieneVehiculo: "No",
+      };
+      await guardarRespuestas(encuesta._id, meta);
+
+      await finalizarEncuesta(encuesta._id);
+      alert("¡Encuesta enviada sin vehículo!");
+    } catch (e) {
+      console.error(e);
+      alert("Error al enviar la encuesta");
+    }
+  };
+
+  // Enviar cuando SÍ tiene vehículo (recibe las respuestas del Survey)
+  const handleSubmitConVehiculo = async (answers) => {
+    try {
+      const encuesta = await crearEncuesta({
+        esPrueba,
+        tipo: "USUARIO",
+        encuestadorId,
+        usuarioEmail: null,
+      });
+
+      // Merge con las dos preguntas fijas
+      const all = {
+        qEsPrueba: esPrueba,
+        qTieneVehiculo: "Sí",
+        ...answers,
+      };
+      await guardarRespuestas(encuesta._id, all);
+      await finalizarEncuesta(encuesta._id);
+      alert("¡Encuesta enviada!");
+    } catch (e) {
+      console.error(e);
+      alert("Error al enviar la encuesta");
+    }
   };
 
   return (
     <div>
       <h1>Encuesta de Usuarios</h1>
 
-      {/* Pregunta 1 */}
+      {/* Pregunta fija 1 */}
       <div className="question">
-        <label>¿Es una prueba? *</label>
+        <label>¿Es una prueba?</label>
         <div>
           <label>
             <input
               type="radio"
-              name="isTest"
+              name="esPrueba"
               value="Sí"
-              onChange={(e) => setIsTest(e.target.value)}
-              required
+              onChange={() => setEsPrueba("Sí")}
             />
             Sí
           </label>
           <label>
             <input
               type="radio"
-              name="isTest"
+              name="esPrueba"
               value="No"
-              onChange={(e) => setIsTest(e.target.value)}
-              required
+              onChange={() => setEsPrueba("No")}
             />
             No
           </label>
         </div>
       </div>
 
-      {/* Pregunta 2 */}
+      {/* Pregunta fija 2 */}
       <div className="question">
-        <label>¿Tiene vehículo privado? (Si no, finalizar encuesta) *</label>
+        <label>¿Tiene vehículo privado? (Si no, finalizar encuesta)</label>
         <div>
           <label>
             <input
               type="radio"
-              name="hasVehicle"
+              name="vehiculo"
               value="Sí"
-              onChange={(e) => setHasVehicle(e.target.value)}
-              required
+              onChange={() => setTieneVehiculo("Sí")}
             />
             Sí
           </label>
           <label>
             <input
               type="radio"
-              name="hasVehicle"
+              name="vehiculo"
               value="No"
-              onChange={(e) => setHasVehicle(e.target.value)}
-              required
+              onChange={() => setTieneVehiculo("No")}
             />
             No
           </label>
         </div>
       </div>
 
-      {/* Caso: tiene vehículo → renderizamos el formulario completo */}
-      {hasVehicle === "Sí" && (
-        <Survey questions={preguntasUsuarios} onSubmit={handleSurveySubmit} />
-      )}
-
-      {/* Caso: no tiene vehículo → mensaje + botón de enviar */}
-      {hasVehicle === "No" && (
+      {/* Caso: NO tiene vehículo → mensaje + botón que guarda en backend */}
+      {tieneVehiculo === "No" && (
         <div>
           <p>Gracias por su tiempo, no necesita continuar.</p>
-          <button
-            onClick={() => handleSurveySubmit({})}
-            className="submit-btn"
-          >
+          <button type="button" className="submit-btn" onClick={handleEnviarSinVehiculo}>
             Enviar
           </button>
         </div>
+      )}
+
+      {/* Caso: SÍ tiene vehículo → mostramos Survey y al enviar guardamos en backend */}
+      {tieneVehiculo === "Sí" && (
+        <Survey
+          questions={preguntasUsuarios}
+          onSubmit={handleSubmitConVehiculo}
+        />
       )}
     </div>
   );
