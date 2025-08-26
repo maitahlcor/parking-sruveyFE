@@ -1,28 +1,97 @@
-:root { --bg:#f6f7fb; --fg:#111; --muted:#666; --primary:#2563eb; --border:#e5e7eb; }
+/* ==== RESET SUAVE ==== */
 * { box-sizing: border-box; }
-body { margin:0; font-family: Inter, system-ui, Arial; color:var(--fg); background:var(--bg); }
-
-.app-header {
-  display:flex; align-items:center; justify-content:space-between;
-  padding:14px 18px; background:#fff; border-bottom:1px solid var(--border);
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: #f6f7fb;
+  color: #111827;
 }
-.app-header h1 { margin:0; font-size:18px; }
-.app-header nav a { margin-left:12px; text-decoration:none; color:var(--muted); padding:6px 10px; border-radius:8px; }
-.app-header nav a.active, .app-header nav a:hover { background: #eef2ff; color:#1e40af; }
 
-.app-main { max-width:960px; margin:24px auto; padding:0 16px; }
-.app-footer { text-align:center; padding:18px; color:var(--muted); }
-
-.card { background:#fff; border:1px solid var(--border); border-radius:12px; padding:20px; }
-.form { display:grid; gap:18px; }
-.field label { display:block; font-weight:600; margin-bottom:8px; }
-.field .inline label { margin-right:16px; font-weight:400; }
-select, input[type="text"], input[type="number"] {
-  width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:8px; background:#fff;
+/* ==== BARRA SUPERIOR ==== */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 24px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
 }
-.actions { display:flex; gap:12px; margin-top:8px; }
-.actions.end { justify-content:flex-end; }
-.btn { border:1px solid var(--border); background:#fff; padding:10px 14px; border-radius:8px; cursor:pointer; }
-.btn:hover { background:#f3f4f6; }
-.btn-primary { background:var(--primary); color:#fff; border-color:transparent; }
-.btn-primary:hover { filter:brightness(0.95); }
+.topbar .brand {
+  font-weight: 700;
+  text-decoration: none;
+  color: #111827;
+}
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.menu a {
+  text-decoration: none;
+  color: #374151;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+.menu a.active {
+  color: #1d4ed8;
+  background: #eaf2ff;
+}
+
+/* ==== CONTENEDOR Y PIE ==== */
+.container {
+  max-width: 960px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+.footer {
+  text-align: center;
+  padding: 24px 16px;
+  color: #6b7280;
+}
+
+/* ==== TARJETAS Y FORM ==== */
+.card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.03);
+}
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 12px 0;
+}
+.form-field input, .form-field select, .form-field textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+}
+.button {
+  display: inline-block;
+  background: #2563eb;
+  color: #fff;
+  border: 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.button.secondary {
+  background: #e5e7eb;
+  color: #111827;
+}
+
+/* ==== LOGIN CENTRADO ==== */
+.auth-card {
+  max-width: 420px;
+  margin: 48px auto;
+}

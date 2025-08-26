@@ -1,75 +1,48 @@
 import { useState } from "react";
-import { login, register } from "../services/auth";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/AuthContext.jsx";
 
 export default function Login() {
-  const nav = useNavigate();
-  const { setUser } = useAuth();
-  const [mode, setMode] = useState("login"); // "login" | "register"
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [busy, setBusy] = useState(false);
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  async function onSubmit(e) {
+  const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const onSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    setBusy(true);
+    setLoading(true);
     try {
-      const u = mode === "login"
-        ? await login(email, password)
-        : await register(email, password);
-      setUser(u);
-      nav("/"); // o /usuarios
+      await login(form);
+      navigate("/"); // a donde quieras
     } catch (err) {
-      setError(err.message || "Error");
+      setError(err.message || "No se pudo iniciar sesión");
     } finally {
-      setBusy(false);
+      setLoading(false);
     }
-  }
+  };
 
   return (
-    <div className="container">
-      <div className="card">
-        <h2>{mode === "login" ? "Iniciar sesión" : "Crear cuenta"}</h2>
-
-        <form onSubmit={onSubmit} className="form">
-          <label>Correo</label>
-          <input
-            type="email"
-            placeholder="correo@dominio.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-
-          <label>Contraseña</label>
-          <input
-            type="password"
-            placeholder="********"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-
-          {error && <div className="error">{error}</div>}
-
-          <button type="submit" disabled={busy}>
-            {busy ? "Procesando..." : (mode === "login" ? "Entrar" : "Registrarme")}
-          </button>
-
-          <div style={{ marginTop: 12 }}>
-            <button
-              type="button"
-              className="btn-link"
-              onClick={() => setMode(m => (m === "login" ? "register" : "login"))}
-            >
-              {mode === "login" ? "Crear una cuenta" : "Ya tengo cuenta"}
-            </button>
-          </div>
-        </form>
-      </div>
+    <div className="card auth-card">
+  <h2>Ingresar</h2>
+  {error && <div className="alert">{error}</div>}
+  <form onSubmit={onSubmit}>
+    <div className="form-field">
+      <label>Correo</label>
+      <input type="email" name="email" value={form.email} onChange={onChange} required />
     </div>
+    <div className="form-field">
+      <label>Contraseña</label>
+      <input type="password" name="password" value={form.password} onChange={onChange} required />
+    </div>
+    <button className="button" type="submit" disabled={loading}>
+      {loading ? "Ingresando…" : "Ingresar"}
+    </button>
+  </form>
+</div>
+
   );
 }

@@ -7,13 +7,13 @@ import Login from "./pages/Login.jsx";
 
 export default function App() {
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<Home />} />
+    <Routes>
+      <Route element={<Layout />}>
+        <Route index element={<Home />} />
         <Route path="/usuarios" element={<Usuarios />} />
         <Route path="/locales" element={<Locales />} />
         <Route path="/login" element={<Login />} />
-      </Routes>
-    </Layout>
+      </Route>
+    </Routes>
   );
 }
