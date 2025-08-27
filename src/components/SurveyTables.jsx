@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 // Opción 1: importar el JSON local (Vite permite importar JSON directamente)
-import data from "../data/escenarios.json"; // ajusta la ruta
+import data from "../data/escenaios.json"; // ajusta la ruta
 
 // Mapea cada "Tipo_*" a una imagen (pon aquí tus URLs reales o imports)
 const IMG_BY_TIPO = {

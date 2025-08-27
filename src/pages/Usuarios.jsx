@@ -29,5 +29,167 @@ export default function Usuarios() {
   const [enviando, setEnviando] = useState(false);
   const [lastCoords, setLastCoords] = useState(null);
 
-  // 👇 SOLO vista previa de lo elegido en la tabla de escenarios (no se envía aún)
-  const [escenariosPrevi]()
+  // SOLO vista previa de lo elegido en la tabla de escenarios (no se envía aún)
+  const [escenariosPreview, setEscenariosPreview] = useState(null);
+
+  const navigate = useNavigate();
+
+  const enviarSinVehiculo = async () => {
+    setEnviando(true);
+    try {
+      const coords = await getCoords().catch(() => null);
+      if (coords) setLastCoords(coords);
+
+      const { encuestaId } = await crearEncuesta({
+        tipo: "usuario",
+        esPrueba: esPrueba === "Sí",
+        coords,
+      });
+
+      const respuestas = [
+        { name: "es_prueba", title: "¿Es una prueba?", type: "radiogroup", value: esPrueba || "No" },
+        { name: "vehiculo_privado", title: "¿Tiene vehículo privado?", type: "radiogroup", value: "No" },
+      ];
+
+      await finalizarEncuesta(encuestaId, respuestas);
+      alert("¡Encuesta (sin vehículo) enviada!");
+      navigate("/", { replace: true });
+    } catch (e) {
+      console.error(e);
+      alert(e.message || "Error enviando");
+    } finally {
+      setEnviando(false);
+    }
+  };
+
+  const enviarConVehiculo = async (answers) => {
+    setEnviando(true);
+    try {
+      const coords = await getCoords().catch(() => null);
+      if (coords) setLastCoords(coords);
+
+      const { encuestaId } = await crearEncuesta({
+        tipo: "usuario",
+        esPrueba: esPrueba === "Sí",
+        coords,
+      });
+
+      const extra = [
+        { name: "es_prueba", title: "¿Es una prueba?", type: "radiogroup", value: esPrueba || "No" },
+        { name: "vehiculo_privado", title: "¿Tiene vehículo privado?", type: "radiogroup", value: "Sí" },
+      ];
+
+      // Por ahora NO incluimos escenariosPreview en el backend
+      const respuestas = [...extra, ...aArregloDeRespuestas(answers, preguntasUsuarios)];
+
+      await finalizarEncuesta(encuestaId, respuestas);
+      alert("¡Encuesta enviada!");
+      navigate("/", { replace: true });
+    } catch (e) {
+      console.error(e);
+      alert(e.message || "Error enviando");
+    } finally {
+      setEnviando(false);
+    }
+  };
+
+  return (
+    <div>
+      <h1>Encuesta de Usuarios</h1>
+
+      {/* Pregunta fija 1 */}
+      <div className="question">
+        <label className="question-title">¿Es una prueba?</label>
+        <div className="radiogroup horizontal">
+          <label>
+            <input
+              type="radio"
+              name="esPrueba"
+              value="Sí"
+              checked={esPrueba === "Sí"}
+              onChange={() => setEsPrueba("Sí")}
+            />{" "}
+            Sí
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="esPrueba"
+              value="No"
+              checked={esPrueba === "No"}
+              onChange={() => setEsPrueba("No")}
+            />{" "}
+            No
+          </label>
+        </div>
+      </div>
+
+      {/* Pregunta fija 2 */}
+      <div className="question">
+        <label className="question-title">¿Tiene vehículo privado? (Si no, finalizar encuesta)</label>
+        <div className="radiogroup horizontal">
+          <label>
+            <input
+              type="radio"
+              name="vehiculo"
+              value="Sí"
+              checked={tieneVehiculo === "Sí"}
+              onChange={() => setTieneVehiculo("Sí")}
+            />{" "}
+            Sí
+          </label>
+          <label>
+            <input
+              type="radio"
+              name="vehiculo"
+              value="No"
+              checked={tieneVehiculo === "No"}
+              onChange={() => setTieneVehiculo("No")}
+            />{" "}
+            No
+          </label>
+        </div>
+      </div>
+
+      {tieneVehiculo === "No" && (
+        <div className="card" style={{ marginTop: 16 }}>
+          <p>Gracias por su tiempo, no necesita continuar.</p>
+          <button className="submit-btn" onClick={enviarSinVehiculo} disabled={enviando || !esPrueba}>
+            {enviando ? "Enviando..." : "Enviar"}
+          </button>
+          {lastCoords && (
+            <p className="muted" style={{ marginTop: 8 }}>
+              Última ubicación:{" "}
+              <strong>
+                {lastCoords.lat.toFixed(6)}, {lastCoords.lng.toFixed(6)}
+              </strong>{" "}
+              · {Math.round(lastCoords.accuracy || 0)} m
+            </p>
+          )}
+        </div>
+      )}
+
+      {tieneVehiculo === "Sí" && (
+        <Survey
+          questions={preguntasUsuarios}
+          onSubmit={enviarConVehiculo}
+          disabled={enviando || !esPrueba}
+          lastCoords={lastCoords}
+          // ⬇️ Aquí se inserta la tabla de escenarios entre las preguntas y el botón Enviar
+          extraBeforeSubmit={
+            <section style={{ marginTop: 32 }}>
+              <h3>Escenarios (vista previa, no se envía)</h3>
+              <SurveyTables
+                showSubmit={false}              // sin botón propio
+                onChange={setEscenariosPreview} // guarda lo que el usuario va eligiendo
+              />
+              <pre style={{ background: "#f8fafc", padding: 12, borderRadius: 8, overflow: "auto" }}>
+{JSON.stringify(escenariosPreview, null, 2)}
+              </pre>
+            </section>
+          }
+        />
+      )}
+    </div>
+  );
+}
