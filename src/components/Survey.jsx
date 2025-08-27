@@ -7,6 +7,8 @@ export default function Survey({
   onAnswersChange = null,
   disabled = false,
   lastCoords = null,
+  extraBeforeSubmit = null,
+
 }) {
   const [answers, setAnswers] = useState({});
 
@@ -139,7 +141,7 @@ export default function Survey({
           )}
         </div>
       ))}
-
+      {extraBeforeSubmit}
       <button type="submit" className="submit-btn" disabled={disabled}>
         {disabled ? "Enviando..." : "Enviar"}
       </button>

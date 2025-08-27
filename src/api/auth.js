@@ -7,7 +7,7 @@ export function login(email, password) {
     body: { email, password },
   });
 }
-//registra el usuario
+//registra el 
 export function register(email, password) {
   return api("/auth/register", {
     method: "POST",
