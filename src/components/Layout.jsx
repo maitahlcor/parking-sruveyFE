@@ -1,24 +1,19 @@
-import { Link, Outlet, NavLink } from "react-router-dom";
-import { useAuth } from "../context/AuthContext"; // ajusta la ruta si la tienes distinta
+// src/components/Layout.jsx
+import { Link, Outlet } from "react-router-dom";
+import { useAuth } from "../context/AuthContext"
+ 
 
 export default function Layout() {
   const { user, logout } = useAuth();
 
   return (
     <>
-      <header className="topbar">
+      <header className="navbar">
         <Link to="/" className="brand">Encuestas de Parqueo</Link>
 
-        {/* Sólo el botón de auth, sin navegación */}
-        <div className="auth">
-          {user ? (
-            <>
-              <span style={{ marginRight: 8 }}>{user.email}</span>
-              <button className="button secondary" onClick={logout}>Salir</button>
-            </>
-          ) : (
-            <NavLink to="/login">Ingresar</NavLink> 
-          )}
+        <div className="right">
+          {user && <span className="email">{user.email}</span>}
+          <button className="btn btn-outline btn-sm" onClick={logout}>Salir</button>
         </div>
       </header>
 

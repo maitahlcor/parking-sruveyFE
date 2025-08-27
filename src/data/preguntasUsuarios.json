@@ -41,7 +41,7 @@
    },
     {
       "name":"q6.1",
-      "title":"¿Sexp?",
+      "title":"¿Sexo?",
       "isRequired":true,
       "type":"radiogroup",
       "choices":[
@@ -62,7 +62,7 @@
    },
    {
       "name":"stratov",
-      "title":"¿Estrato Socio?",
+      "title":"¿Estrato Socioeconomico?",
       "isRequired":true,
       "type":"radiogroup",
       "choices":[

@@ -1,60 +1,112 @@
 import { useState } from "react";
 import Survey from "../components/Survey";
 import preguntasUsuarios from "../data/preguntasUsuarios.json";
-import { crearEncuesta, guardarRespuestas, finalizarEncuesta } from "../api/encuestas";
+import {
+  crearEncuesta,
+  guardarRespuestas,
+  finalizarEncuesta,
+  getCoords,
+} from "../api/encuestas";
+
+/**
+ * Convierte el objeto de respuestas del Survey en un arreglo listo para el backend.
+ * - radiogroup / text / comment / rating: 1 registro por pregunta
+ * - checkbox: 1 registro con array de valores
+ * - ranking: 1 registro por cada ítem rankeado (choice)
+ */
+function aArregloDeRespuestas(answers, questions) {
+  const out = [];
+  for (const q of questions) {
+    const val = answers[q.name];
+    if (val == null) continue;
+
+    if (q.type === "ranking" && typeof val === "object") {
+      // val = { "Costo": "1", "Tiempo": "2", ... }
+      for (const [choice, rank] of Object.entries(val)) {
+        out.push({
+          name: q.name,
+          title: `${q.title} · ${choice}`,
+          type: q.type,
+          value: rank,
+        });
+      }
+    } else {
+      out.push({
+        name: q.name,
+        title: q.title,
+        type: q.type,
+        value: val, // puede ser string, array (checkbox), número (rating)
+      });
+    }
+  }
+  return out;
+}
 
 export default function Usuarios() {
-  const [esPrueba, setEsPrueba] = useState(null);
-  const [tieneVehiculo, setTieneVehiculo] = useState(null);
-  const encuestadorId = 1; // TODO: ajustar al ID real (login/selector)
+  const [esPrueba, setEsPrueba] = useState(null);       // "Sí" | "No" | null
+  const [tieneVehiculo, setTieneVehiculo] = useState(null); // "Sí" | "No" | null
 
-  // Enviar cuando NO tiene vehículo
-  const handleEnviarSinVehiculo = async () => {
+  const [enviando, setEnviando] = useState(false);
+  const [lastCoords, setLastCoords] = useState(null);   // {lat, lng, accuracy?}
+
+  // Envío cuando NO tiene vehículo: crea encuesta vacía y finaliza
+  const enviarSinVehiculo = async () => {
+    setEnviando(true);
     try {
-      const encuesta = await crearEncuesta({
-        esPrueba,
-        tipo: "USUARIO",
-        encuestadorId,
-        usuarioEmail: null, // opcional
-      });
+      const coords = await getCoords().catch(() => null);
+      if (coords) setLastCoords(coords);
 
-      // Guarda también las dos preguntas fijas como metadatos en respuestas (si quieres)
-      const meta = {
-        qEsPrueba: esPrueba,
-        qTieneVehiculo: "No",
+      const payload = {
+        tipo: "usuario",
+        esPrueba: esPrueba === "Sí",
+        coords,
+        // encuestadorId: (si luego tienes auth, puedes pasarlo aquí)
       };
-      await guardarRespuestas(encuesta._id, meta);
 
-      await finalizarEncuesta(encuesta._id);
-      alert("¡Encuesta enviada sin vehículo!");
-    } catch (e) {
-      console.error(e);
-      alert("Error al enviar la encuesta");
+      const r1 = await crearEncuesta(payload);
+      const encuestaId = r1.encuestaId;
+
+      // Sin respuestas
+      await finalizarEncuesta(encuestaId);
+
+      alert("¡Encuesta sin vehículo enviada!");
+    } catch (err) {
+      console.error(err);
+      alert(err.message || "Error enviando la encuesta");
+    } finally {
+      setEnviando(false);
     }
   };
 
-  // Enviar cuando SÍ tiene vehículo (recibe las respuestas del Survey)
-  const handleSubmitConVehiculo = async (answers) => {
+  // Envío cuando SÍ tiene vehículo: usa Survey
+  const enviarConVehiculo = async (answers) => {
+    setEnviando(true);
     try {
-      const encuesta = await crearEncuesta({
-        esPrueba,
-        tipo: "USUARIO",
-        encuestadorId,
-        usuarioEmail: null,
-      });
+      const coords = await getCoords().catch(() => null);
+      if (coords) setLastCoords(coords);
 
-      // Merge con las dos preguntas fijas
-      const all = {
-        qEsPrueba: esPrueba,
-        qTieneVehiculo: "Sí",
-        ...answers,
+      const payload = {
+        tipo: "usuario",
+        esPrueba: esPrueba === "Sí",
+        coords,
       };
-      await guardarRespuestas(encuesta._id, all);
-      await finalizarEncuesta(encuesta._id);
-      alert("¡Encuesta enviada!");
-    } catch (e) {
-      console.error(e);
-      alert("Error al enviar la encuesta");
+
+      const r1 = await crearEncuesta(payload);
+      const encuestaId = r1.encuestaId;
+
+      const respuestas = aArregloDeRespuestas(answers, preguntasUsuarios);
+      if (respuestas.length) {
+        await guardarRespuestas(encuestaId, respuestas);
+      }
+
+      await finalizarEncuesta(encuestaId);
+
+      alert("¡Encuesta enviada con respuestas!");
+    } catch (err) {
+      console.error(err);
+      alert(err.message || "Error enviando la encuesta");
+    } finally {
+      setEnviando(false);
     }
   };
 
@@ -62,15 +114,16 @@ export default function Usuarios() {
     <div>
       <h1>Encuesta de Usuarios</h1>
 
-      {/* Pregunta fija 1 */}
+      {/* Pregunta fija 1: ¿Es una prueba? */}
       <div className="question">
-        <label>¿Es una prueba?</label>
-        <div>
+        <label className="question-title">¿Es una prueba?</label>
+        <div className="radiogroup horizontal">
           <label>
             <input
               type="radio"
               name="esPrueba"
               value="Sí"
+              checked={esPrueba === "Sí"}
               onChange={() => setEsPrueba("Sí")}
             />
             Sí
@@ -80,6 +133,7 @@ export default function Usuarios() {
               type="radio"
               name="esPrueba"
               value="No"
+              checked={esPrueba === "No"}
               onChange={() => setEsPrueba("No")}
             />
             No
@@ -87,15 +141,18 @@ export default function Usuarios() {
         </div>
       </div>
 
-      {/* Pregunta fija 2 */}
+      {/* Pregunta fija 2: ¿Tiene vehículo privado? */}
       <div className="question">
-        <label>¿Tiene vehículo privado? (Si no, finalizar encuesta)</label>
-        <div>
+        <label className="question-title">
+          ¿Tiene vehículo privado? (Si no, finalizar encuesta)
+        </label>
+        <div className="radiogroup horizontal">
           <label>
             <input
               type="radio"
               name="vehiculo"
               value="Sí"
+              checked={tieneVehiculo === "Sí"}
               onChange={() => setTieneVehiculo("Sí")}
             />
             Sí
@@ -105,6 +162,7 @@ export default function Usuarios() {
               type="radio"
               name="vehiculo"
               value="No"
+              checked={tieneVehiculo === "No"}
               onChange={() => setTieneVehiculo("No")}
             />
             No
@@ -112,21 +170,37 @@ export default function Usuarios() {
         </div>
       </div>
 
-      {/* Caso: NO tiene vehículo → mensaje + botón que guarda en backend */}
+      {/* Si NO tiene vehículo: mensaje + botón enviar */}
       {tieneVehiculo === "No" && (
-        <div>
+        <div className="card" style={{ marginTop: 16 }}>
           <p>Gracias por su tiempo, no necesita continuar.</p>
-          <button type="button" className="submit-btn" onClick={handleEnviarSinVehiculo}>
-            Enviar
+          <button
+            className="submit-btn"
+            onClick={enviarSinVehiculo}
+            disabled={enviando || !esPrueba}
+            title={!esPrueba ? "Responda si es una prueba" : ""}
+          >
+            {enviando ? "Enviando..." : "Enviar"}
           </button>
+          {lastCoords && (
+            <p className="muted" style={{ marginTop: 8 }}>
+              Última ubicación:{" "}
+              <strong>
+                {lastCoords.lat.toFixed(6)}, {lastCoords.lng.toFixed(6)}
+              </strong>{" "}
+              · {Math.round(lastCoords.accuracy || 0)} m
+            </p>
+          )}
         </div>
       )}
 
-      {/* Caso: SÍ tiene vehículo → mostramos Survey y al enviar guardamos en backend */}
+      {/* Si SÍ tiene vehículo: renderizamos el Survey */}
       {tieneVehiculo === "Sí" && (
         <Survey
           questions={preguntasUsuarios}
-          onSubmit={handleSubmitConVehiculo}
+          onSubmit={enviarConVehiculo}
+          disabled={enviando || !esPrueba}
+          lastCoords={lastCoords}
         />
       )}
     </div>

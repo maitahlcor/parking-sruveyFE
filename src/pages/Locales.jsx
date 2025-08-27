@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Survey from "../components/Survey";
 import preguntasLocales from "../data/encuestaLocales.json";
-import { crearEncuesta, guardarRespuestas, finalizarEncuesta } from "../api/encuestas";
+//import { crearEncuesta, guardarRespuestas, finalizarEncuesta } from "../api/encuestas";
 
 export default function Locales() {
   const [loading, setLoading] = useState(false);

@@ -4,16 +4,17 @@ import "./Survey.css";
 
 export default function Survey({
   questions = [],
-  onSubmit,             // callback para enviar respuestas al padre
-  onAnswersChange,      // callback opcional para notificar cambios en tiempo real
-  disabled = false,     // opcional: deshabilitar inputs/botón mientras envías
+  onSubmit,
+  onAnswersChange = null,   // <- ya no causa ReferenceError
+  disabled = false,         // <- evita "disabled is not defined"
+  lastCoords = null,
 }) {
   const [answers, setAnswers] = useState({});
 
   const handleChange = (name, value) => {
     const updated = { ...answers, [name]: value };
     setAnswers(updated);
-    if (onAnswersChange) onAnswersChange(updated);
+    if (typeof onAnswersChange === "function") onAnswersChange(updated);
   };
 
   const handleSurveySubmit = (e) => {
@@ -30,7 +31,6 @@ export default function Survey({
             {q.isRequired && " *"}
           </label>
 
-          {/* RadioGroup */}
           {q.type === "radiogroup" && (
             <div className={`radiogroup ${q.layout === "horizontal" ? "horizontal" : "vertical"}`}>
               {q.choices.map((choice, idx) => (
@@ -49,7 +49,6 @@ export default function Survey({
             </div>
           )}
 
-          {/* Ranking con selects 1..N y sin duplicados */}
           {q.type === "ranking" &&
             q.choices.map((choice, idx) => (
               <div key={idx} className="ranking-item">
@@ -82,7 +81,6 @@ export default function Survey({
               </div>
             ))}
 
-          {/* Checkbox múltiple */}
           {q.type === "checkbox" && (
             <div className="checkboxgroup">
               {q.choices.map((choice, idx) => (
@@ -107,7 +105,6 @@ export default function Survey({
             </div>
           )}
 
-          {/* Texto / number */}
           {q.type === "text" && (
             <input
               type={q.inputType || "text"}
@@ -118,7 +115,6 @@ export default function Survey({
             />
           )}
 
-          {/* Comentario */}
           {q.type === "comment" && (
             <textarea
               name={q.name}
@@ -128,7 +124,6 @@ export default function Survey({
             />
           )}
 
-          {/* Rating (slider) */}
           {q.type === "rating" && (
             <div className="rating">
               <span>{q.minRateDescription}</span>
@@ -149,6 +144,12 @@ export default function Survey({
       <button type="submit" className="submit-btn" disabled={disabled}>
         {disabled ? "Enviando..." : "Enviar"}
       </button>
+
+      {lastCoords && (
+        <p className="muted" style={{ marginTop: 8 }}>
+          Última ubicación: <strong>{lastCoords.lat.toFixed(6)}, {lastCoords.lng.toFixed(6)}</strong> · {Math.round(lastCoords.accuracy || 0)} m
+        </p>
+      )}
     </form>
   );
 }

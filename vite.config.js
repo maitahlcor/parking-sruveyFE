@@ -6,5 +6,13 @@ export default defineConfig({
   build: {
     outDir: 'dist'
   },
-  base: '/'
+  base: '/',
+  // vite.config.js (dev)
+    server: {
+        proxy: {
+          "/api":  { target: "http://localhost:4000", changeOrigin: true, secure: false },
+          "/auth": { target: "http://localhost:4000", changeOrigin: true, secure: false },
+        },
+      },
+
 })
