@@ -1,12 +1,11 @@
-// src/components/Survey.jsx
 import React, { useState } from "react";
 import "./Survey.css";
 
 export default function Survey({
   questions = [],
   onSubmit,
-  onAnswersChange = null,   // <- ya no causa ReferenceError
-  disabled = false,         // <- evita "disabled is not defined"
+  onAnswersChange = null,
+  disabled = false,
   lastCoords = null,
 }) {
   const [answers, setAnswers] = useState({});
@@ -65,7 +64,7 @@ export default function Survey({
                 >
                   <option value="">Seleccione...</option>
                   {q.choices.map((_, i) => {
-                    const value = (i + 1).toString();
+                    const value = String(i + 1);
                     const alreadySelected = Object.values(answers[q.name] || {}).includes(value);
                     return (
                       <option

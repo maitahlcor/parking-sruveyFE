@@ -1,51 +1,66 @@
+// src/pages/Locales.jsx
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Survey from "../components/Survey";
 import preguntasLocales from "../data/encuestaLocales.json";
-//import { crearEncuesta, guardarRespuestas, finalizarEncuesta } from "../api/encuestas";
+import { crearEncuesta, finalizarEncuesta, getCoords } from "../api/encuestas";
+
+// Reutiliza el mismo helper
+function aArregloDeRespuestas(answers, questions) {
+  const out = [];
+  for (const q of questions) {
+    const val = answers[q.name];
+    if (val == null) continue;
+
+    if (q.type === "ranking" && typeof val === "object") {
+      for (const [choice, rank] of Object.entries(val)) {
+        out.push({ name: q.name, title: `${q.title} · ${choice}`, type: q.type, value: rank });
+      }
+    } else {
+      out.push({ name: q.name, title: q.title, type: q.type, value: val });
+    }
+  }
+  return out;
+}
 
 export default function Locales() {
-  const [loading, setLoading] = useState(false);
-  const [email, setEmail] = useState("");
-  const encuestadorId = 1;
+  const [enviando, setEnviando] = useState(false);
+  const [lastCoords, setLastCoords] = useState(null);
+  const navigate = useNavigate();
 
-  const handleSurveySubmit = async (answers) => {
+  const enviarLocales = async (answers) => {
+    setEnviando(true);
     try {
-      setLoading(true);
-      const encuesta = await crearEncuesta({
-        esPrueba: false,
-        tipo: "LOCAL",
-        encuestadorId,
-        usuarioEmail: email || null,
+      const coords = await getCoords().catch(() => null);
+      if (coords) setLastCoords(coords);
+
+      const { encuestaId } = await crearEncuesta({
+        tipo: "local",       // 👈 diferencia
+        esPrueba: false,     // o añade una pregunta fija si quieres
+        coords,
       });
-      await guardarRespuestas(encuesta._id, answers);
-      await finalizarEncuesta(encuesta._id);
+
+      const respuestas = aArregloDeRespuestas(answers, preguntasLocales);
+
+      await finalizarEncuesta(encuestaId, respuestas);
       alert("¡Encuesta de locales enviada!");
+      navigate("/", { replace: true }); // 👈 Vuelve a Home
     } catch (e) {
       console.error(e);
-      alert("Error al enviar la encuesta de locales");
+      alert(e.message || "Error enviando");
     } finally {
-      setLoading(false);
+      setEnviando(false);
     }
   };
 
   return (
     <div>
       <h1>Encuesta de Locales</h1>
-
-      <div className="question">
-        <label>Correo del local (opcional)</label>
-        <input
-          type="email"
-          placeholder="ej: local@dominio.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-
       <Survey
         questions={preguntasLocales}
-        onSubmit={handleSurveySubmit}
-        disabled={loading}
+        onSubmit={enviarLocales}
+        disabled={enviando}
+        lastCoords={lastCoords}
       />
     </div>
   );

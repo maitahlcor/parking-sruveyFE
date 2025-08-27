@@ -1,19 +1,44 @@
 import { Routes, Route } from "react-router-dom";
-import Layout from "./components/Layout.jsx";
-import Home from "./pages/Home.jsx";
-import Usuarios from "./pages/Usuarios.jsx";
-import Locales from "./pages/Locales.jsx";
-import Login from "./pages/Login.jsx";
+import Home from "./pages/Home";
+import Usuarios from "./pages/Usuarios";
+import Locales from "./pages/Locales";
+import Login from "./pages/Login";
+import RequireAuth from "./components/RequireAuth";
+import Navbar from "./components/Navbar";
 
 export default function App() {
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="/usuarios" element={<Usuarios />} />
-        <Route path="/locales" element={<Locales />} />
+    <>
+      {/* El Navbar solo se muestra si hay usuario (lo controlaremos dentro) */}
+      <Navbar />
+      <Routes>
         <Route path="/login" element={<Login />} />
-      </Route>
-    </Routes>
+        <Route
+          path="/"
+          element={
+            <RequireAuth>
+              <Home />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/usuarios"
+          element={
+            <RequireAuth>
+              <Usuarios />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/locales"
+          element={
+            <RequireAuth>
+              <Locales />
+            </RequireAuth>
+          }
+        />
+        <Route path="*" element={<Login />} />
+      </Routes>
+    </>
   );
 }
