@@ -133,7 +133,7 @@ export default function Usuarios() {
         <Survey
           questions={preguntasUsuarios}
           onSubmit={enviarConVehiculo}
-          disabled={enviando || !esPrueba || (tieneVehiculo === "Sí" && !(escenariosPreview?.completo))}
+          disabled={enviando || !esPrueba}  // ⬅️ solo bloquea inputs si está enviando o no es prueba
           lastCoords={lastCoords}
           // ⬇️ Aquí se inserta la tabla de escenarios entre las preguntas y el botón Enviar
           extraBeforeSubmit={
@@ -154,6 +154,7 @@ export default function Usuarios() {
              )}
             </section>
           }
+          submitDisabledExtra={tieneVehiculo === "Sí" && !(escenariosPreview?.completo)}
         />
       )}
     </div>
