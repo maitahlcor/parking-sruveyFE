@@ -101,26 +101,8 @@ export default function Usuarios() {
       <div className="question">
         <label className="question-title">¿Es una prueba?</label>
         <div className="radiogroup horizontal">
-          <label>
-            <input
-              type="radio"
-              name="esPrueba"
-              value="Sí"
-              checked={esPrueba === "Sí"}
-              onChange={() => setEsPrueba("Sí")}
-            />{" "}
-            Sí
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="esPrueba"
-              value="No"
-              checked={esPrueba === "No"}
-              onChange={() => setEsPrueba("No")}
-            />{" "}
-            No
-          </label>
+          <label><input type="radio" name="esPrueba" value="Sí" checked={esPrueba==="Sí"} onChange={()=>setEsPrueba("Sí")} /> Sí</label>
+          <label><input type="radio" name="esPrueba" value="No" checked={esPrueba==="No"} onChange={()=>setEsPrueba("No")} /> No</label>
         </div>
       </div>
 
@@ -128,26 +110,8 @@ export default function Usuarios() {
       <div className="question">
         <label className="question-title">¿Tiene vehículo privado? (Si no, finalizar encuesta)</label>
         <div className="radiogroup horizontal">
-          <label>
-            <input
-              type="radio"
-              name="vehiculo"
-              value="Sí"
-              checked={tieneVehiculo === "Sí"}
-              onChange={() => setTieneVehiculo("Sí")}
-            />{" "}
-            Sí
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="vehiculo"
-              value="No"
-              checked={tieneVehiculo === "No"}
-              onChange={() => setTieneVehiculo("No")}
-            />{" "}
-            No
-          </label>
+          <label><input type="radio" name="vehiculo" value="Sí" checked={tieneVehiculo==="Sí"} onChange={()=>setTieneVehiculo("Sí")} /> Sí</label>
+          <label><input type="radio" name="vehiculo" value="No" checked={tieneVehiculo==="No"} onChange={()=>setTieneVehiculo("No")} /> No</label>
         </div>
       </div>
 
@@ -159,11 +123,7 @@ export default function Usuarios() {
           </button>
           {lastCoords && (
             <p className="muted" style={{ marginTop: 8 }}>
-              Última ubicación:{" "}
-              <strong>
-                {lastCoords.lat.toFixed(6)}, {lastCoords.lng.toFixed(6)}
-              </strong>{" "}
-              · {Math.round(lastCoords.accuracy || 0)} m
+              Última ubicación: <strong>{lastCoords.lat?.toFixed(6)}, {lastCoords.lng?.toFixed(6)}</strong> · {Math.round(lastCoords.accuracy || 0)} m
             </p>
           )}
         </div>
@@ -180,10 +140,10 @@ export default function Usuarios() {
             <section style={{ marginTop: 32 }}>
               <h3>Escenarios (vista previa, no se envía)</h3>
               <SurveyTables
-                showSubmit={false}              // sin botón propio
-                onChange={setEscenariosPreview} // guarda lo que el usuario va eligiendo
+                showSubmit={false}
+                onChange={setEscenariosPreview}
               />
-              <pre style={{ background: "#f8fafc", padding: 12, borderRadius: 8, overflow: "auto" }}>
+              <pre style={{ background:"#f8fafc", padding:12, borderRadius:8, overflow:"auto" }}>
 {JSON.stringify(escenariosPreview, null, 2)}
               </pre>
             </section>

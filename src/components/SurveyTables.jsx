@@ -1,43 +1,72 @@
-import React, { useMemo, useState } from "react";
-// Opción 1: importar el JSON local (Vite permite importar JSON directamente)
-import data from "../data/escenaios.json"; // ajusta la ruta
+// src/components/SurveyTables.jsx
+import React, { useMemo, useState, useEffect } from "react";
+import data from "../data/escenarios.json";
 
-// Mapea cada "Tipo_*" a una imagen (pon aquí tus URLs reales o imports)
+// ⬇️ Mapeo de imagen por TIPO (fallback si el escenario no trae Img_A/B/C)
 const IMG_BY_TIPO = {
-  "zer":        "/img/zer.png",
-  "lote":       "/img/lote.png",
-  "via":        "/img/via.png",
-  "cambiar modo transporte Publico": "/img/tpublico.png",
-  "cambiar modo taxis/uber":         "/img/taxi.png",
+  "zer": "/data/imgZer.png",
+  "via": "/data/imgVia.png",
+  "cambiar modo transporte Publico": "/data/imgTpublic.png",
+  "cambiar modo taxis/uber": "/data/imgTaxUber.png",
+  // si agregas imagen para lote:
+  // "lote": "/data/imgLote.png",
 };
 
-// Helper para formatear COP
 const fmtCOP = (n) =>
-  new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", maximumFractionDigits: 0 }).format(n);
+  new Intl.NumberFormat("es-CO", { style: "currency", currency: "COP", maximumFractionDigits: 0 }).format(n ?? 0);
 
-function OptionCell({ label, tipo, costo, distancia, espera }) {
-  const img = IMG_BY_TIPO[tipo];
+// ⬇️ Celda de opción con imagen (usa Img_* del JSON; si no hay, cae al mapeo por tipo)
+function OptionCell({ label, tipo, costo, distancia, espera, imgSrc }) {
+  const src = imgSrc || IMG_BY_TIPO[tipo];
+
   return (
     <td style={{ border: "1px solid #ddd", padding: 10, textAlign: "center", verticalAlign: "top" }}>
-      <div style={{ fontWeight: 700, marginBottom: 6 }}>{label}</div>
-      <div style={{ fontSize: 12, color: "#666" }}>{tipo}</div>
+      <div style={{ fontWeight: 700, marginBottom: 6 }}>Opción {label}</div>
+      <div style={{ fontSize: 12, color: "#666" }}>{tipo || "-"}</div>
 
-      <div style={{
-        margin: "10px auto 12px",
-        width: 140, height: 80,
-        borderRadius: 10, border: "1px solid #e5e7eb",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        overflow: "hidden", background: "#fafafa"
-      }}>
-        {img
-          ? <img src={img} alt={`Imagen ${tipo}`} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-          : <span style={{ fontSize: 12, color: "#555" }}>Imagen {tipo}</span>}
+      <div
+        style={{
+          margin: "10px auto 12px",
+          width: 140,
+          height: 80,
+          borderRadius: 10,
+          border: "1px solid #e5e7eb",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          overflow: "hidden",
+          background: "#fafafa",
+        }}
+      >
+        {src ? (
+          <img
+            src={src}
+            alt={`Imagen ${tipo}`}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            onError={(e) => {
+              // si la ruta existe pero falla, oculto la imagen y muestro texto
+              e.currentTarget.style.display = "none";
+              const s = e.currentTarget.nextSibling;
+              if (s) s.style.display = "block";
+            }}
+          />
+        ) : null}
+        {/* texto de respaldo si no hay imagen o falló */}
+        <span style={{ display: src ? "none" : "block", fontSize: 12, color: "#555", padding: 8 }}>
+          Imagen {tipo || "—"}
+        </span>
       </div>
 
       <div style={{ fontSize: 14, lineHeight: "22px" }}>
-        <div><strong>Costo:</strong> {fmtCOP(costo)}</div>
-        <div><strong>Distancia:</strong> {distancia} m</div>
-        <div><strong>Espera:</strong> {espera} s</div>
+        <div>
+          <strong>Costo:</strong> {fmtCOP(costo)}
+        </div>
+        <div>
+          <strong>Distancia:</strong> {distancia ?? 0} m
+        </div>
+        <div>
+          <strong>Espera:</strong> {espera ?? 0} s
+        </div>
       </div>
     </td>
   );
@@ -54,15 +83,16 @@ function QuestionTable({ escenario, onChange, value }) {
       <table style={{ width: "100%", borderCollapse: "collapse" }}>
         <thead>
           <tr>
-            <th style={{ width: "33.33%", border: "1px solid #ddd", padding: 10 }}>Opción A</th>
-            <th style={{ width: "33.33%", border: "1px solid #ddd", padding: 10 }}>Opción B</th>
-            <th style={{ width: "33.33%", border: "1px solid #ddd", padding: 10 }}>Opción C</th>
+            <th style={{ border: "1px solid #ddd", padding: 10 }}>A</th>
+            <th style={{ border: "1px solid #ddd", padding: 10 }}>B</th>
+            <th style={{ border: "1px solid #ddd", padding: 10 }}>C</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <OptionCell
               label="A"
+              imgSrc={escenario.Img_A}
               tipo={escenario.Tipo_A}
               costo={escenario.Costo_A}
               distancia={escenario.Distancia_A}
@@ -70,6 +100,7 @@ function QuestionTable({ escenario, onChange, value }) {
             />
             <OptionCell
               label="B"
+              imgSrc={escenario.Img_B}
               tipo={escenario.Tipo_B}
               costo={escenario.Costo_B}
               distancia={escenario.Distancia_B}
@@ -77,6 +108,7 @@ function QuestionTable({ escenario, onChange, value }) {
             />
             <OptionCell
               label="C"
+              imgSrc={escenario.Img_C}
               tipo={escenario.Tipo_C}
               costo={escenario.Costo_C}
               distancia={escenario.Distancia_C}
@@ -84,7 +116,7 @@ function QuestionTable({ escenario, onChange, value }) {
             />
           </tr>
           <tr>
-            {["A","B","C"].map((opt) => (
+            {["A", "B", "C"].map((opt) => (
               <td key={opt} style={{ border: "1px solid #ddd", padding: 10, textAlign: "center" }}>
                 <label style={{ cursor: "pointer", fontWeight: 600 }}>
                   <input
@@ -106,23 +138,22 @@ function QuestionTable({ escenario, onChange, value }) {
   );
 }
 
-export default function SurveyTables() {
-  // 1) tomar todas las versiones presentes en el JSON
+export default function SurveyTables({ onChange, showSubmit = false }) {
+  // versiones disponibles en el JSON
   const versionesDisponibles = useMemo(() => {
-    const set = new Set(data.escenarios.map(e => e.version));
-    return [...set].sort((a,b)=>a-b);
+    const set = new Set(data.escenarios.map((e) => e.version));
+    return [...set];
   }, []);
 
-  // 2) elegir una versión al azar en el primer render
+  // elige 1 versión al azar (si quieres forzar una para test, pon const [versionElegida] = useState(4);)
   const [versionElegida] = useState(() => {
     const r = Math.floor(Math.random() * versionesDisponibles.length);
     return versionesDisponibles[r];
   });
 
-  // 3) armar la lista de escenarios de esa versión (puedes barajar si quieres)
+  // escenarios de esa versión (barajados)
   const escenarios = useMemo(() => {
-    const arr = data.escenarios.filter(e => e.version === versionElegida);
-    // barajar para variar el orden de las preguntas
+    const arr = data.escenarios.filter((e) => e.version === versionElegida);
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [arr[i], arr[j]] = [arr[j], arr[i]];
@@ -130,53 +161,45 @@ export default function SurveyTables() {
     return arr;
   }, [versionElegida]);
 
-  // 4) estado de respuestas { [EscenarioID]: "A"|"B"|"C" }
   const [answers, setAnswers] = useState({});
+  const completo = escenarios.every((e) => answers[e.EscenarioID]);
 
-  const handleChange = (escenarioID, opt) => {
-    setAnswers(prev => ({ ...prev, [escenarioID]: opt }));
-  };
-
-  const handleSubmit = () => {
-    // payload listo para enviar a tu backend
+  const emit = () => {
     const payload = {
       version: versionElegida,
-      respuestas: escenarios.map(e => ({
+      completo,
+      respuestas: escenarios.map((e) => ({
         EscenarioID: e.EscenarioID,
-        opcion: answers[e.EscenarioID] || null
-      }))
+        opcion: answers[e.EscenarioID] || null,
+      })),
     };
-    console.log("ENVIAR", payload);
-    alert("Respuestas listas en consola.\n" + JSON.stringify(payload, null, 2));
-    // fetch(`${import.meta.env.VITE_API_URL}/api/respuestas`, { ... })
+    onChange?.(payload);
   };
+
+  useEffect(() => {
+    emit();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [answers]);
+
+  const handleChange = (id, opt) => setAnswers((p) => ({ ...p, [id]: opt }));
 
   return (
     <div style={{ maxWidth: 980, margin: "0 auto", padding: 16 }}>
       <h2 style={{ margin: "8px 0 16px" }}>
-        Encuesta – versión <strong>{versionElegida}</strong>
+        Escenarios – versión <strong>{versionElegida}</strong>
       </h2>
 
       {escenarios.map((esc) => (
-        <QuestionTable
-          key={esc.EscenarioID}
-          escenario={esc}
-          value={answers[esc.EscenarioID] || ""}
-          onChange={handleChange}
-        />
+        <QuestionTable key={esc.EscenarioID} escenario={esc} value={answers[esc.EscenarioID] || ""} onChange={handleChange} />
       ))}
 
-      <div style={{ textAlign: "right", marginTop: 12 }}>
-        <button
-          onClick={handleSubmit}
-          style={{
-            background: "#2563eb", color: "white", border: 0,
-            padding: "10px 16px", borderRadius: 8, cursor: "pointer", fontWeight: 700
-          }}
-        >
-          Enviar respuestas
-        </button>
-      </div>
+      {showSubmit && (
+        <div style={{ textAlign: "right", marginTop: 12 }}>
+          <button className="submit-btn" disabled={!completo} onClick={emit}>
+            Registrar respuestas
+          </button>
+        </div>
+      )}
     </div>
   );
 }
