@@ -9,7 +9,7 @@ const IMG_BY_TIPO = {
   "cambiar modo transporte Publico": "/data/imgTpublic.png",
   "cambiar modo taxis/uber": "/data/imgTaxUber.png",
   // si agregas imagen para lote:
-  // "lote": "/data/imgLote.png",
+  "lote": "/data/imgLote.png",
 };
 
 const fmtCOP = (n) =>
@@ -164,17 +164,29 @@ export default function SurveyTables({ onChange, showSubmit = false }) {
   const [answers, setAnswers] = useState({});
   const completo = escenarios.every((e) => answers[e.EscenarioID]);
 
-  const emit = () => {
+    const emit = () => {
+    // Solo escenarios elegidos
+    const seleccionadas = escenarios
+      .filter((e) => answers[e.EscenarioID])
+      .map((e) => ({
+        EscenarioID: e.EscenarioID,
+        opcion: answers[e.EscenarioID],
+      }));
+
+    const total = escenarios.length;
+    const completas = seleccionadas.length;
     const payload = {
       version: versionElegida,
-      completo,
-      respuestas: escenarios.map((e) => ({
-        EscenarioID: e.EscenarioID,
-        opcion: answers[e.EscenarioID] || null,
-      })),
+      total,
+      completas,
+      faltantes: total - completas,
+      completo: completas === total,
+      respuestas: seleccionadas, // 👈 solo las seleccionadas
     };
+
     onChange?.(payload);
   };
+
 
   useEffect(() => {
     emit();

@@ -51,7 +51,7 @@ export default function Usuarios() {
         { name: "vehiculo_privado", title: "¿Tiene vehículo privado?", type: "radiogroup", value: "No" },
       ];
 
-      await finalizarEncuesta(encuestaId, respuestas);
+      await finalizarEncuesta(encuestaId, respuestas, escenariosPreview);
       alert("¡Encuesta (sin vehículo) enviada!");
       navigate("/", { replace: true });
     } catch (e) {
@@ -82,7 +82,7 @@ export default function Usuarios() {
       // Por ahora NO incluimos escenariosPreview en el backend
       const respuestas = [...extra, ...aArregloDeRespuestas(answers, preguntasUsuarios)];
 
-      await finalizarEncuesta(encuestaId, respuestas);
+      await finalizarEncuesta(encuestaId, respuestas, escenariosPreview);//1
       alert("¡Encuesta enviada!");
       navigate("/", { replace: true });
     } catch (e) {
@@ -133,7 +133,7 @@ export default function Usuarios() {
         <Survey
           questions={preguntasUsuarios}
           onSubmit={enviarConVehiculo}
-          disabled={enviando || !esPrueba}
+          disabled={enviando || !esPrueba || (tieneVehiculo === "Sí" && !(escenariosPreview?.completo))}
           lastCoords={lastCoords}
           // ⬇️ Aquí se inserta la tabla de escenarios entre las preguntas y el botón Enviar
           extraBeforeSubmit={
@@ -143,9 +143,15 @@ export default function Usuarios() {
                 showSubmit={false}
                 onChange={setEscenariosPreview}
               />
-              <pre style={{ background:"#f8fafc", padding:12, borderRadius:8, overflow:"auto" }}>
-{JSON.stringify(escenariosPreview, null, 2)}
-              </pre>
+              {escenariosPreview && (
+               <div style={{ marginTop: 8, fontSize: 14, color: "#374151" }}>
+                 Versión <strong>{escenariosPreview.version}</strong> ·
+                 Seleccionados <strong>{escenariosPreview.completas}/{escenariosPreview.total}</strong>
+                 {escenariosPreview.faltantes > 0 && (
+                   <> · Faltan <strong>{escenariosPreview.faltantes}</strong> opciones</>
+                 )}
+               </div>
+             )}
             </section>
           }
         />
