@@ -1,0 +1,1012 @@
+[
+  {
+    "name": 1,
+    "title": "¿Tiene vehículo privado? (Si no, finalizar encuesta)",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 1
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 1
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 1
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 1
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 1
+      }
+    ],
+    "type": "radiogroup",
+    "choices": [
+      "Sí",
+      "No"
+    ]
+  },
+  {
+    "name": 2,
+    "title": "Que tipo de vehiculo tiene",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 2
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 2
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 2
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 2
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 2
+      }
+    ],
+    "type": "matrixdropdown",
+    "columns": [
+      {
+        "name": "cantidad",
+        "title": "Cantidad",
+        "cellType": "text",
+        "inputType": "number",
+        "min": 0
+      }
+    ],
+    "rows": [
+      "Moto",
+      "Auto",
+      "Bicicleta",
+      "Camion"
+    ],
+    "defaultValue": {
+      "Moto": {
+        "cantidad": 0
+      },
+      "Auto": {
+        "cantidad": 0
+      },
+      "Bicicleta": {
+        "cantidad": 0
+      },
+      "Camion": {
+        "cantidad": 0
+      }
+    },
+    "isRequired": true
+  },
+  {
+    "name": 3,
+    "title": "Numero de celdas de auto en el hogar",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 3
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 3
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 3
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 3
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 3
+      }
+    ],
+    "type": "text",
+    "inputType": "number"
+  },
+  {
+    "name": 4,
+    "title": "Numero de celdas de moto en el hogar ( si parquea auto y moto juntos cuenta como 1 auto 1 moto)",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 4
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 4
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 4
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 4
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 4
+      }
+    ],
+    "type": "text",
+    "inputType": "number"
+  },
+  {
+    "name": 5,
+    "title": "En el caso de poseer un vehículo eléctrico, ¿contemplaría la posibilidad de estacionar en un parqueadero público con punto de carga eléctrica cerca a su vivienda?",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 5
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 5
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 5
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 5
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 5
+      }
+    ],
+    "type": "radiogroup",
+    "choices": [
+      "Sí",
+      "No"
+    ]
+  },
+  {
+    "name": 6,
+    "title": null,
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 6
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 6
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 6
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 6
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 6
+      }
+    ],
+    "type": "radiogroup",
+    "choices": [
+      "Trabajador Dependiente",
+      "Estudiante",
+      "Trabajador Independiente",
+      "Ama de Casa",
+      "Jubilado",
+      "Desempleado",
+      "Trabajador y Estudiante",
+      "Ninguna",
+      "Jubilado y Trabajador",
+      "NR",
+      "Ama de Casa y Estudiante",
+      "Jubilado y Estudiante"
+    ]
+  },
+  {
+    "name": 7,
+    "title": "Sexo",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 7
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 7
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 7
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 7
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 7
+      }
+    ],
+    "type": "radiogroup",
+    "choices": [
+      "Masculino",
+      "Femenino",
+      "Otro"
+    ]
+  },
+  {
+    "name": 8,
+    "title": "Tiene alguna discapacidad?",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 8
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 8
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 8
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 8
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 8
+      }
+    ],
+    "type": "text"
+  },
+  {
+    "name": 9,
+    "title": "Estrato socioeconómico",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 9
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 9
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 9
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 9
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 9
+      }
+    ],
+    "type": "text",
+    "inputType": "number"
+  },
+  {
+    "name": 10,
+    "title": "¿En qué comuna o barrio vive?",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 10
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 10
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 10
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 10
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 10
+      }
+    ],
+    "type": "radiogroup",
+    "choices": [
+      "Comuna 1 - Popular",
+      "Comuna 2 - Santa Cruz",
+      "Comuna 3 - Manrique",
+      "Comuna 4 - Aranjuez",
+      "Comuna 5 - Castilla",
+      "Comuna 6 - Doce de Octubre",
+      "Comuna 7 - Robledo",
+      "Comuna 8 - Villa Hermosa",
+      "Comuna 9 - Buenos Aires",
+      "Comuna 10 - La Candelaria",
+      "Comuna 11 - Laureles - Estadio",
+      "Comuna 12 - La América",
+      "Comuna 13 - San Javier",
+      "Comuna 14 - El Poblado",
+      "Comuna 15 - Guayabal",
+      "Comuna 16 - Belén"
+    ]
+  },
+  {
+    "name": 11,
+    "title": "¿Ha sido multado alguna vez por mal parqueo?",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 11
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 11
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 11
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 11
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 11
+      }
+    ],
+    "type": "radiogroup",
+    "choices": [
+      "Sí",
+      "No"
+    ]
+  },
+  {
+    "name": 12,
+    "title": "¿Le da miedo aparcar de manera prohibida?",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 12
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 12
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 12
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 12
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 12
+      }
+    ],
+    "type": "radiogroup",
+    "choices": [
+      "Sí",
+      "No"
+    ]
+  },
+  {
+    "name": 13,
+    "title": "¿Con que frecuencia parquea en sitios indebidos?",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 13
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 13
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 13
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 13
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 13
+      }
+    ],
+    "type": "radiogroup",
+    "choices": [
+      "nunca",
+      "1 ves al mes",
+      " 2 a 5 veces al mes",
+      "6 a 10 veces al mes",
+      " 11 veces o mas al mes"
+    ]
+  },
+  {
+    "name": 14,
+    "title": "Tipo de parqueadero utilizado en el ultimo viaje",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 14
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 14
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 14
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 14
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 14
+      }
+    ],
+    "type": "radiogroup",
+    "choices": [
+      "Vía pública gratis",
+      "ZER",
+      "Parqueo en lote"
+    ]
+  },
+  {
+    "name": 15,
+    "title": "Costo total del parqueamiento (COP) en el ultimo viaje",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 15
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 15
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 15
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 15
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 15
+      }
+    ],
+    "type": "text",
+    "inputType": "number"
+  },
+  {
+    "name": 16,
+    "title": "Distancia caminada (m) en el ultimo viaje",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 16
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 16
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 16
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 16
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 16
+      }
+    ],
+    "type": "text",
+    "inputType": "number"
+  },
+  {
+    "name": 17,
+    "title": "Tiempo en encontrar parqueo (min) en el ultimo viaje",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 17
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 17
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 17
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 17
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 17
+      }
+    ],
+    "type": "text",
+    "inputType": "number"
+  },
+  {
+    "name": 18,
+    "title": "Tarifa pagada por hora (COP/hora) en ultimo viaje",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 18
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 18
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 18
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 18
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 18
+      }
+    ],
+    "type": "text",
+    "inputType": "number"
+  },
+  {
+    "name": 19,
+    "title": "Tiempo de estacionamiento (min) en el ultimo viaje",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 19
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 19
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 19
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 19
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 19
+      }
+    ],
+    "type": "text",
+    "inputType": "number"
+  },
+  {
+    "name": 20,
+    "title": "Motivo del viaje en el ultimo viaje",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 20
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 20
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 20
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 20
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 20
+      }
+    ],
+    "type": "radiogroup",
+    "choices": [
+      "Trabajo",
+      "Estudios",
+      "Compras",
+      "Ocio",
+      "Otro"
+    ]
+  },
+  {
+    "name": 21,
+    "title": "Frecuencia del viaje realizado",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 21
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 21
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 21
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 21
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 21
+      }
+    ],
+    "type": "text",
+    "inputType": "number"
+  },
+  {
+    "name": 22,
+    "title": "Ordene importancia : Costo, Tiempo de parqueo, Distancia, Tipo de parqueadero",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 22
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 22
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 22
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 22
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 22
+      }
+    ],
+    "type": "text"
+  },
+  {
+    "name": 23,
+    "title": "escoger en funcion de escenarios ",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 23
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 23
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 23
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 23
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 23
+      }
+    ],
+    "type": "radiogroup",
+    "choices": [
+      "A",
+      "B",
+      "C"
+    ]
+  },
+  {
+    "name": 24,
+    "title": "escoger en funcion de escenarios ",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 24
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 24
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 24
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 24
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 24
+      }
+    ],
+    "type": "radiogroup",
+    "choices": [
+      "A",
+      "B",
+      "C"
+    ]
+  },
+  {
+    "name": 25,
+    "title": "escoger en funcion de escenarios ",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 25
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 25
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 25
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 25
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 25
+      }
+    ],
+    "type": "radiogroup",
+    "choices": [
+      "A",
+      "B",
+      "C"
+    ]
+  },
+  {
+    "name": 26,
+    "title": "escoger en funcion de escenarios ",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 26
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 26
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 26
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 26
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 26
+      }
+    ],
+    "type": "radiogroup",
+    "choices": [
+      "A",
+      "B",
+      "C"
+    ]
+  },
+  {
+    "name": 27,
+    "title": "escoger en funcion de escenarios ",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 27
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 27
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 27
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 27
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 27
+      }
+    ],
+    "type": "radiogroup",
+    "choices": [
+      "A",
+      "B",
+      "C"
+    ]
+  },
+  {
+    "name": 28,
+    "title": "escoger en funcion de escenarios ",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 28
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 28
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 28
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 28
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 28
+      }
+    ],
+    "type": "radiogroup",
+    "choices": [
+      "A",
+      "B",
+      "C"
+    ]
+  },
+  {
+    "name": 29,
+    "title": "escoger en funcion de escenarios ",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 29
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 29
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 29
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 29
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 29
+      }
+    ],
+    "type": "radiogroup",
+    "choices": [
+      "A",
+      "B",
+      "C"
+    ]
+  },
+  {
+    "name": 30,
+    "title": null,
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 30
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 30
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 30
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 30
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 30
+      }
+    ],
+    "type": "text"
+  },
+  {
+    "name": 31,
+    "title": null,
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 31
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 31
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 31
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 31
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 31
+      }
+    ],
+    "type": "text"
+  },
+  {
+    "name": 32,
+    "title": null,
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 32
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 32
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 32
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 32
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 32
+      }
+    ],
+    "type": "text"
+  }
+]

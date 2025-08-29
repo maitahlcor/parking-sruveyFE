@@ -106,7 +106,7 @@ export default function Survey({
               ))}
             </div>
           )}
-
+    
           {q.type === "text" && (
             <input
               type={q.inputType || "text"}
