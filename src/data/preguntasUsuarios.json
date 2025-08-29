@@ -1,36 +1,5 @@
 [
-  {
-    "name": 1,
-    "title": "¿Tiene vehículo privado? (Si no, finalizar encuesta)",
-    "type": "radiogroup",
-    "choices": [
-      "Sí",
-      "No"
-    ],
-    "orden": [
-      {
-        "tipo": "Residencial",
-        "orden": 1
-      },
-      {
-        "tipo": "Comercio/Clientes+Empleados",
-        "orden": 1
-      },
-      {
-        "tipo": "Servicios/Clientes+Proveedores+Empleados",
-        "orden": 1
-      },
-      {
-        "tipo": "Industria/Clientes+Empleados",
-        "orden": 1
-      },
-      {
-        "tipo": "Dotacional/Empleados",
-        "orden": 1
-      }
-    ],
-    "isRequired": true
-  },
+  
   {
     "name": 2,
     "title": "Que tipo de vehiculo tiene",
@@ -127,6 +96,47 @@
     "choices": [
       "Sí",
       "No"
+    ],
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 5
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 5
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 5
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 5
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 5
+      }
+    ]
+  },
+  {
+    "name": 5,
+    "title": "Ocupacion",
+    "type": "radiogroup",
+    "choices": [
+      "Trabajador Dependiente",
+      "Estudiante",
+      "Trabajador Independiente",
+      "Ama de Casa",
+      "Jubilado",
+      "Desempleado",
+      "Trabajador y Estudiante",
+      "Ninguna",
+      "Jubilado y Trabajador",
+      "NR",
+      "Ama de Casa y Estudiante",
+      "Jubilado y Estudiante"
     ],
     "orden": [
       {
