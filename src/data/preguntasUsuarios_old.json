@@ -1,0 +1,169 @@
+[
+   {
+      "name":"q2",
+      "title":"¿Cuántas celdas de auto tiene en su hogar?",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         " 1",
+         " 2",
+         " 3",
+         " 4",
+         " 5"
+      ]
+   },
+   {
+      "name":"q3",
+      "title":"¿Cuántas celdas de moto tiene en su hogar?",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         " 1",
+         " 2",
+         " 3",
+         " 4",
+         " 5"
+      ]
+   },
+   {
+      "name":"q4",
+      "title":"¿Cuántos carros hay en su hogar?",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":["Moto", "Auto", "Bicicleta", "Camion"]
+   },
+   {
+      "name":"q5",
+      "title":"donde parquea su vehiculo en su hogar",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":["Parqueo propio  en mi hogar/unidad","via con prohibido parquear","via donde es permitido parquear","Parqueadero privado pago"]
+   },
+    {
+      "name":"q6.1",
+      "title":"¿Sexo?",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         "Masculino",
+         "Femenino",
+         "Otro"
+      ]
+   },
+   {
+      "name":"q6",
+      "title":"¿Tiene alguna discapacidad?",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         "Sí",
+         "No"
+      ]
+   },
+   {
+      "name":"stratov",
+      "title":"¿Estrato Socioeconomico?",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         " 1",
+         " 2",
+         " 3",
+         " 4",
+         " 5"
+      ]
+   },
+   {
+      "name":"q7",
+      "title":"¿Con qué frecuencia utiliza el parqueadero?",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         "Todos los días",
+         "3-4 veces por semana",
+         "1-2 veces por semana",
+         "Ocasionalmente"
+      ]
+   },
+   {
+      "name":"q8",
+      "title":"¿Qué tan fácil le resulta encontrar un espacio disponible?",
+      "isRequired":true,
+      "type":"rating",
+      "minRateDescription":"Muy difícil",
+      "maxRateDescription":"Muy fácil"
+   },
+   {
+      "name":"q9",
+      "title":"¿Cuánto paga en promedio por el parqueadero al mes?",
+      "isRequired":true,
+      "type":"text",
+      "inputType":"number"
+   },
+   {
+      "name":"q10",
+      "title":"¿Cuál es su nivel de satisfacción con la seguridad del parqueadero?",
+      "isRequired":true,
+      "type":"rating",
+      "minRateDescription":"Muy insatisfecho",
+      "maxRateDescription":"Muy satisfecho"
+   },
+   {
+      "name":"q11",
+      "title":"¿Cuál es su nivel de satisfacción con la limpieza del parqueadero?",
+      "isRequired":true,
+      "type":"rating",
+      "minRateDescription":"Muy insatisfecho",
+      "maxRateDescription":"Muy satisfecho"
+   },
+   {
+      "name":"q12",
+      "title":"¿Cuál es su nivel de satisfacción con la iluminación del parqueadero?",
+      "isRequired":true,
+      "type":"rating",
+      "minRateDescription":"Muy insatisfecho",
+      "maxRateDescription":"Muy satisfecho"
+   },
+   {
+      "name":"q13",
+      "title":"¿Qué mejoras sugeriría para el parqueadero?",
+      "type":"comment"
+   },
+   {
+      "name":"q14",
+      "title":"¿Frecuencia del viaje realizado?",
+      "type":"comment"
+   },
+   {
+      "name":"q15",
+      "title":"¿Ha sido multado alguna vez por mal parqueo?",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         "Sí",
+         "No"
+      ]
+   },
+   {
+      "name":"q16",
+      "title":"¿Le da miedo aparcar de manera prohibida?",
+      "isRequired":true,
+      "type":"radiogroup",
+      "choices":[
+         "Sí",
+         "No"
+      ]
+   },
+   {
+      "name":"q17",
+      "title":"Ordene importancia : Costo, Tiempo de parqueo, Distancia, Tipo de parqueadero",
+      "type": "ranking",
+      "isRequired": true,
+      "choices": [
+         "Costo",
+         "Tiempo de parqueo",
+         "Distancia",
+         "Tipo de parqueadero"
+      ]
+   }
+]

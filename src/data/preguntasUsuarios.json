@@ -1,169 +1,650 @@
 [
-   {
-      "name":"q2",
-      "title":"¿Cuántas celdas de auto tiene en su hogar?",
-      "isRequired":true,
-      "type":"radiogroup",
-      "choices":[
-         " 1",
-         " 2",
-         " 3",
-         " 4",
-         " 5"
-      ]
-   },
-   {
-      "name":"q3",
-      "title":"¿Cuántas celdas de moto tiene en su hogar?",
-      "isRequired":true,
-      "type":"radiogroup",
-      "choices":[
-         " 1",
-         " 2",
-         " 3",
-         " 4",
-         " 5"
-      ]
-   },
-   {
-      "name":"q4",
-      "title":"¿Cuántos carros hay en su hogar?",
-      "isRequired":true,
-      "type":"radiogroup",
-      "choices":["Moto", "Auto", "Bicicleta", "Camion"]
-   },
-   {
-      "name":"q5",
-      "title":"donde parquea su vehiculo en su hogar",
-      "isRequired":true,
-      "type":"radiogroup",
-      "choices":["Parqueo propio  en mi hogar/unidad","via con prohibido parquear","via donde es permitido parquear","Parqueadero privado pago"]
-   },
-    {
-      "name":"q6.1",
-      "title":"¿Sexo?",
-      "isRequired":true,
-      "type":"radiogroup",
-      "choices":[
-         "Masculino",
-         "Femenino",
-         "Otro"
-      ]
-   },
-   {
-      "name":"q6",
-      "title":"¿Tiene alguna discapacidad?",
-      "isRequired":true,
-      "type":"radiogroup",
-      "choices":[
-         "Sí",
-         "No"
-      ]
-   },
-   {
-      "name":"stratov",
-      "title":"¿Estrato Socioeconomico?",
-      "isRequired":true,
-      "type":"radiogroup",
-      "choices":[
-         " 1",
-         " 2",
-         " 3",
-         " 4",
-         " 5"
-      ]
-   },
-   {
-      "name":"q7",
-      "title":"¿Con qué frecuencia utiliza el parqueadero?",
-      "isRequired":true,
-      "type":"radiogroup",
-      "choices":[
-         "Todos los días",
-         "3-4 veces por semana",
-         "1-2 veces por semana",
-         "Ocasionalmente"
-      ]
-   },
-   {
-      "name":"q8",
-      "title":"¿Qué tan fácil le resulta encontrar un espacio disponible?",
-      "isRequired":true,
-      "type":"rating",
-      "minRateDescription":"Muy difícil",
-      "maxRateDescription":"Muy fácil"
-   },
-   {
-      "name":"q9",
-      "title":"¿Cuánto paga en promedio por el parqueadero al mes?",
-      "isRequired":true,
-      "type":"text",
-      "inputType":"number"
-   },
-   {
-      "name":"q10",
-      "title":"¿Cuál es su nivel de satisfacción con la seguridad del parqueadero?",
-      "isRequired":true,
-      "type":"rating",
-      "minRateDescription":"Muy insatisfecho",
-      "maxRateDescription":"Muy satisfecho"
-   },
-   {
-      "name":"q11",
-      "title":"¿Cuál es su nivel de satisfacción con la limpieza del parqueadero?",
-      "isRequired":true,
-      "type":"rating",
-      "minRateDescription":"Muy insatisfecho",
-      "maxRateDescription":"Muy satisfecho"
-   },
-   {
-      "name":"q12",
-      "title":"¿Cuál es su nivel de satisfacción con la iluminación del parqueadero?",
-      "isRequired":true,
-      "type":"rating",
-      "minRateDescription":"Muy insatisfecho",
-      "maxRateDescription":"Muy satisfecho"
-   },
-   {
-      "name":"q13",
-      "title":"¿Qué mejoras sugeriría para el parqueadero?",
-      "type":"comment"
-   },
-   {
-      "name":"q14",
-      "title":"¿Frecuencia del viaje realizado?",
-      "type":"comment"
-   },
-   {
-      "name":"q15",
-      "title":"¿Ha sido multado alguna vez por mal parqueo?",
-      "isRequired":true,
-      "type":"radiogroup",
-      "choices":[
-         "Sí",
-         "No"
-      ]
-   },
-   {
-      "name":"q16",
-      "title":"¿Le da miedo aparcar de manera prohibida?",
-      "isRequired":true,
-      "type":"radiogroup",
-      "choices":[
-         "Sí",
-         "No"
-      ]
-   },
-   {
-      "name":"q17",
-      "title":"Ordene importancia : Costo, Tiempo de parqueo, Distancia, Tipo de parqueadero",
-      "type": "ranking",
+  {
+    "name": 1,
+    "title": "¿Tiene vehículo privado? (Si no, finalizar encuesta)",
+    "type": "radiogroup",
+    "choices": [
+      "Sí",
+      "No"
+    ],
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 1
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 1
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 1
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 1
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 1
+      }
+    ],
+    "isRequired": true
+  },
+  {
+    "name": 2,
+    "title": "Que tipo de vehiculo tiene",
+    "type": "radiogroup",
+    "choices": [
+      "Moto",
+      "Auto",
+      "Bicicleta",
+      "Camion"
+    ],
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 2
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 2
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 2
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 2
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 2
+      }
+    ]
+  },
+  {
+    "name": 3,
+    "title": "Numero de celdas de auto en el hogar",
+    "type": "text",
+    "inputType": "number",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 3
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 3
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 3
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 3
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 3
+      }
+    ]
+  },
+  {
+    "name": 4,
+    "title": "Numero de celdas de moto en el hogar ( si parquea auto y moto juntos cuenta como 1 auto 1 moto)",
+    "type": "text",
+    "inputType": "number",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 4
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 4
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 4
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 4
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 4
+      }
+    ]
+  },
+  {
+    "name": 5,
+    "title": "En el caso de poseer un vehículo eléctrico, ¿contemplaría la posibilidad de estacionar en un parqueadero público con punto de carga eléctrica cerca a su vivienda?",
+    "type": "radiogroup",
+    "choices": [
+      "Sí",
+      "No"
+    ],
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 5
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 5
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 5
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 5
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 5
+      }
+    ]
+  },
+  {
+    "name": 7,
+    "title": "Sexo",
+    "type": "radiogroup",
+    "choices": [
+      "Masculino",
+      "Femenino",
+      "Otro"
+    ],
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 7
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 7
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 7
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 7
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 7
+      }
+    ]
+  },
+  {
+    "name": 8,
+    "title": "Tiene alguna discapacidad?",
+    "type": "text",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 8
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 8
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 8
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 8
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 8
+      }
+    ]
+  },
+  {
+    "name": 9,
+    "title": "Estrato socioeconómico",
+    "type": "text",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 9
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 9
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 9
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 9
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 9
+      }
+    ],
+    "inputType": "number"
+  },
+  {
+    "name": 10,
+    "title": "¿En qué comuna o barrio vive?",
+    "type": "radiogroup",
+    "choices": [
+      "Comuna 1 - Popular",
+      "Comuna 2 - Santa Cruz",
+      "Comuna 3 - Manrique",
+      "Comuna 4 - Aranjuez",
+      "Comuna 5 - Castilla",
+      "Comuna 6 - Doce de Octubre",
+      "Comuna 7 - Robledo",
+      "Comuna 8 - Villa Hermosa",
+      "Comuna 9 - Buenos Aires",
+      "Comuna 10 - La Candelaria",
+      "Comuna 11 - Laureles - Estadio",
+      "Comuna 12 - La América",
+      "Comuna 13 - San Javier",
+      "Comuna 14 - El Poblado",
+      "Comuna 15 - Guayabal",
+      "Comuna 16 - Belén"
+    ],
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 10
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 10
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 10
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 10
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 10
+      }
+    ]
+  },
+  {
+    "name": 11,
+    "title": "¿Ha sido multado alguna vez por mal parqueo?",
+    "type": "radiogroup",
+    "choices": [
+      "Sí",
+      "No"
+    ],
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 11
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 11
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 11
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 11
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 11
+      }
+    ]
+  },
+  {
+    "name": 12,
+    "title": "¿Le da miedo aparcar de manera prohibida?",
+    "type": "radiogroup",
+    "choices": [
+      "Sí",
+      "No"
+    ],
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 12
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 12
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 12
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 12
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 12
+      }
+    ]
+  },
+  {
+    "name": 13,
+    "title": "¿Con que frecuencia parquea en sitios indebidos?",
+    "type": "radiogroup",
+    "choices": [
+      "nunca",
+      "1 ves al mes",
+      " 2 a 5 veces al mes",
+      "6 a 10 veces al mes",
+      " 11 veces o mas al mes"
+    ],
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 13
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 13
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 13
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 13
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 13
+      }
+    ]
+  },
+  {
+    "name": 14,
+    "title": "Tipo de parqueadero utilizado en el ultimo viaje",
+    "type": "radiogroup",
+    "choices": [
+      "Vía pública gratis",
+      "ZER",
+      "Parqueo en lote"
+    ],
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 14
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 14
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 14
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 14
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 14
+      }
+    ]
+  },
+  {
+    "name": 15,
+    "title": "Costo total del parqueamiento (COP) en el ultimo viaje",
+    "type": "text",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 15
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 15
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 15
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 15
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 15
+      }
+    ],
+    "inputType": "number"
+  },
+  {
+    "name": 16,
+    "title": "Distancia caminada (m) en el ultimo viaje",
+    "type": "text",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 16
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 16
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 16
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 16
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 16
+      }
+    ],
+    "inputType": "number"
+  },
+  {
+    "name": 17,
+    "title": "Tiempo en encontrar parqueo (min) en el ultimo viaje",
+    "type": "text",
+    "inputType": "number",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 17
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 17
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 17
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 17
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 17
+      }
+    ]
+  },
+  {
+    "name": 18,
+    "title": "Tarifa pagada por hora (COP/hora) en ultimo viaje",
+    "type": "text",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 18
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 18
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 18
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 18
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 18
+      }
+    ],
+    "inputType": "number"
+  },
+  {
+    "name": 19,
+    "title": "Tiempo de estacionamiento (min) en el ultimo viaje",
+    "type": "text",
+    "inputType": "number",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 19
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 19
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 19
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 19
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 19
+      }
+    ]
+  },
+  {
+    "name": 20,
+    "title": "Motivo del viaje en el ultimo viaje",
+    "type": "radiogroup",
+    "choices": [
+      "Trabajo",
+      "Estudios",
+      "Compras",
+      "Ocio",
+      "Otro"
+    ],
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 20
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 20
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 20
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 20
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 20
+      }
+    ]
+  },
+  {
+    "name": 21,
+    "title": "Frecuencia del viaje realizado",
+    "type": "text",
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 21
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 21
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 21
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 21
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 21
+      }
+    ],
+    "inputType": "number"
+  },
+  {
+    "name": 22,
+    "title": "Ordene importancia : Costo, Tiempo de parqueo, Distancia, Tipo de parqueadero",
+    "type": "ranking",
       "isRequired": true,
       "choices": [
          "Costo",
          "Tiempo de parqueo",
          "Distancia",
          "Tipo de parqueadero"
-      ]
-   }
+      ],
+    "orden": [
+      {
+        "tipo": "Residencial",
+        "orden": 22
+      },
+      {
+        "tipo": "Comercio/Clientes+Empleados",
+        "orden": 22
+      },
+      {
+        "tipo": "Servicios/Clientes+Proveedores+Empleados",
+        "orden": 22
+      },
+      {
+        "tipo": "Industria/Clientes+Empleados",
+        "orden": 22
+      },
+      {
+        "tipo": "Dotacional/Empleados",
+        "orden": 22
+      }
+    ]
+  }
 ]
