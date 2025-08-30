@@ -1,7 +1,7 @@
 [
   
   {
-    "name": 2,
+    "name": 1,
     "title": "Que tipo de vehiculo tiene",
     "type": "radiogroup",
     "choices": [
@@ -34,7 +34,7 @@
     ]
   },
   {
-    "name": 3,
+    "name": 2,
     "title": "Numero de celdas de auto en el hogar",
     "type": "text",
     "inputType": "number",
@@ -62,7 +62,7 @@
     ]
   },
   {
-    "name": 4,
+    "name": 3,
     "title": "Numero de celdas de moto en el hogar ( si parquea auto y moto juntos cuenta como 1 auto 1 moto)",
     "type": "text",
     "inputType": "number",
@@ -90,7 +90,7 @@
     ]
   },
   {
-    "name": 5,
+    "name": 4,
     "title": "En el caso de poseer un vehículo eléctrico, ¿contemplaría la posibilidad de estacionar en un parqueadero público con punto de carga eléctrica cerca a su vivienda?",
     "type": "radiogroup",
     "choices": [
@@ -196,7 +196,17 @@
   {
     "name": 8,
     "title": "Tiene alguna discapacidad?",
-    "type": "text",
+    "type": "radiogroup",
+    "choices": [
+          "Ninguna",
+          "Discapacidad visual",
+          "Discapacidad auditiva",
+          "Discapacidad motora",
+          "Discapacidad cognitiva",
+          "Discapacidad del habla",
+          "Discapacidad múltiple",
+          "Otra"
+      ],
     "orden": [
       {
         "tipo": "Residencial",
@@ -563,7 +573,7 @@
   },
   {
     "name": 20,
-    "title": "Motivo del viaje en el ultimo viaje",
+    "title": "Motivo del en el ultimo viaje",
     "type": "radiogroup",
     "choices": [
       "Trabajo",
